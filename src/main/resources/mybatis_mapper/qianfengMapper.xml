@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.QianfengDao">
+
+	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="qianfengMap">
+		<id property="danganId" column="dangan_id"></id>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="wupinId" column="wupin_id"></result>
+		<result property="fileId" column="file_id"></result>
+		<result property="qianfengDate" column="qianfeng_date"></result>
+		<result property="daoqiDate" column="daoqi_date"></result>
+		<result property="fuzeren" column="fuzeren"></result>
+		<result property="kehujingli" column="kehujingli"></result>
+		<result property="dianhua" column="dianhua"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="wupinName" column="wupin_name"></result>
+	</resultMap>
+	
+
+	<!-- 查询表中全部记录 -->
+	<select id="selectPaperList" resultMap="qianfengMap">
+		select p.*,d.*,i.* 
+		from papers_info p left join departments d 
+		on p.bumen_id = d.bumen_id
+		left join items i
+		on p.wupin_id = i.wupin_id 
+	</select>
+	<select id="selectFileId" resultType="Integer">
+		select MAX(file_id)  from papers_info
+	</select>
+	<select id="selectDanganId" resultType="Integer">
+		select MAX(dangan_id)  from papers_info
+	</select>
+	<!-- 添加 -->
+	<insert id="insertPaper" parameterType="PaperInfo" >
+		insert into papers_info (dangan_id,bumen_id,wupin_id,file_id,qianfeng_date,daoqi_date,fuzeren,kehujingli,dianhua) 
+		values(#{danganId},#{bumenId},#{wupinId},#{fileId},#{qianfengDate},#{daoqiDate},#{fuzeren},#{kehujingli},#{dianhua});
+	</insert>
+	<insert id="insertFile" parameterType="Integer" >
+		insert into storage_info (file_id,in_serial)
+		values(#{fileId},'0');
+	</insert>
+	
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.RukushouliDao">
+
+	<resultMap type="com.llhc.mfsa.entity.SerialInfo" id="serialMapper">
+		<id property="serialNum" column="serial_num"></id>
+		<result property="operation" column="operation"></result>
+		<result property="state" column="state"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="ywyId" column="ywy_id"></result>
+		<result property="count" column="count"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="renyuanName" column="renyuan_name"></result>
+	</resultMap>
+	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="paperMap">
+		<id property="danganId" column="dangan_id"></id>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="wupinId" column="wupin_id"></result>
+		<result property="fileId" column="file_id"></result>
+		<result property="qianfengDate" column="qianfeng_date"></result>
+		<result property="daoqiDate" column="daoqi_date"></result>
+		<result property="fuzeren" column="fuzeren"></result>
+		<result property="kehujingli" column="kehujingli"></result>
+		<result property="dianhua" column="dianhua"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="wupinName" column="wupin_name"></result>
+	</resultMap>
+
+	<select id="selectSerialList" resultMap="serialMapper">
+		select serial_num,count,d.bumen_name,p.renyuan_name
+		from serial_info s left join departments d
+		on s.bumen_id = d.bumen_id
+		left join persons p
+		on p.renyuan_id = s.ywy_id
+		where state = 1
+	</select>
+	<select id="selectPaperList" parameterType="String" resultMap="paperMap">
+		select p.*,d.bumen_name,i.wupin_name
+		from papers_info p left join storage_info st
+		on p.file_id = st.file_id
+		left join serial_info se
+		on st.in_serial = se.serial_num
+		left join departments d
+		on p.bumen_id = d.bumen_id
+		left join items i
+		on p.wupin_id = i.wupin_id
+		where se.serial_num = #{serialNum}
+	</select>
+	<select id="selectFileId" parameterType="Integer" resultType="Integer">
+		select file_id from papers_info
+		where dangan_id=#{danganId}
+	</select>
+	<update id="updateStorage" parameterType="StorageInfo">
+		update storage_info
+		set kgyin_id = #{kgyinId},in_date=NOW()
+		where file_id = #{fileId};
+	</update>
+	<update id="updateSerial" parameterType="String">
+		update serial_info
+		set state = 3
+		where serial_num = #{serialNum};
+	</update>
+	
+	
+</mapper>

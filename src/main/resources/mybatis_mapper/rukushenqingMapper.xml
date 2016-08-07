@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.RukushenqingDao">
+
+	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="paperMap">
+		<id property="danganId" column="dangan_id"></id>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="wupinId" column="wupin_id"></result>
+		<result property="qianfengDate" column="qianfeng_date"></result>
+		<result property="daoqiDate" column="daoqi_date"></result>
+		<result property="fuzeren" column="fuzeren"></result>
+		<result property="kehujingli" column="kehujingli"></result>
+		<result property="dianhua" column="dianhua"></result>
+		<result property="chuliState" column="chuli_state"></result>
+		<result property="kucunState" column="kucun_state"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="wupinName" column="wupin_name"></result>
+	</resultMap>
+	<resultMap type="com.llhc.mfsa.entity.StorageInfo" id="storageMap">
+		<id property="fileId" column="file_id"></id>
+		<result property="inSerial" column="in_serial"></result>
+		<result property="ywyinId" column="ywyin_id"></result>
+		<result property="jhyinId" column="jhyin_id"></result>
+		<result property="kgyinId" column="kgyin_id"></result>
+		<result property="inDate" column="in_date"></result>
+	</resultMap>
+	
+	<select id="selectPaperList" resultMap="paperMap">
+		select dangan_id,bumen_name,qianfeng_date
+		from papers_info p left join departments d 
+		on p.bumen_id = d.bumen_id
+		left join storage_info s on p.file_id = s.file_id
+		where in_serial = '0'
+	</select>
+	
+	<select id="selectFileId" parameterType="Integer" resultType="Integer">
+		select file_id from papers_info where dangan_id=#{dangan_id}
+	</select>
+	
+	<update id="updateStorage" parameterType="StorageInfo">
+		update storage_info
+		set in_serial = #{inSerial},ywyin_id=#{ywyinId}
+		where file_id = #{fileId};
+	</update>
+	
+	<insert id="insertSerial" parameterType="SerialInfo" >
+		insert into serial_info (serial_num, operation,state,bumen_id,ywy_id,count) values (#{serialNum},1,1,#{bumenId},#{ywyId},#{count});
+	</insert>
+
+</mapper>
