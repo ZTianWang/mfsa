@@ -5,14 +5,15 @@ import java.util.Date;
 
 public class RukushenqingView {
 	
-	private int danganId;
+	private String danganNum;
 	private String bumenName;
 	private Date qianfengDate;
-	public int getDanganId() {
-		return danganId;
+	
+	public String getDanganNum() {
+		return danganNum;
 	}
-	public void setDanganId(int danganId) {
-		this.danganId = danganId;
+	public void setDanganNum(String danganNum) {
+		this.danganNum = danganNum;
 	}
 	public String getBumenName() {
 		return bumenName;

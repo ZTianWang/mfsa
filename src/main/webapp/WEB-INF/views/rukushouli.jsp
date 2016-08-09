@@ -45,7 +45,7 @@
 		<script type="text/javascript">
 			function selectGroup() {
 				var grp = document.getElementById("check-all");
-				var eles = document.getElementsByName("danganId");
+				var eles = document.getElementsByName("danganNum");
 				for (var i = 0; i < eles.length; i++) {
 					if (eles[i].disabled == false) eles[i].checked = grp.checked;
 				}
@@ -116,7 +116,7 @@
 													${serial.bumenName}
 												</td>
 												<td>
-													${serial.renyuanName}
+													${serial.ywyName}
 												</td>
 												<td>
 													<input type="radio" name="serialNum" value="${serial.serialNum}" />
@@ -153,16 +153,16 @@
 								<table width=60%; border="0px" cellspacing="0px" cellpadding="">
 									<!-- 文件列开始  -->
 									<form id="form2" method="post" action="accept">
-										<c:forEach  var="list" items="${paperInfo}">
+										<c:forEach  var="list" items="${paperInfo.paperlist}">
 											<tr>
 											<td>
-												${list.danganId}
+												${list.danganNum}
 											</td>
 											<td>
 												${list.qianfengDate}
 											</td>
 											<td>
-												<input type="checkbox" name="danganId" value="${list.danganId}" />
+												<input type="checkbox" name="danganNum" value="${list.danganNum}" />
 											</td>
 										</tr>
 										</c:forEach>
@@ -199,9 +199,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach  var="paper" items="${paperInfo}">
+							<c:forEach  var="paper" items="${paperInfo.paperlist}">
 								<tr>
-									<td>${paper.danganId}</td>
+									<td>${paper.danganNum}</td>
 									<td>${paper.bumenName}</td>
 									<td>${paper.wupinName}</td>
 									<td>${paper.qianfengDate}</td>

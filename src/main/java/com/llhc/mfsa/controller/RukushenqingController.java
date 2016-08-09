@@ -1,14 +1,11 @@
 package com.llhc.mfsa.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.llhc.mfsa.helper.IdHelper;
 import com.llhc.mfsa.service.RukushenqingService;
@@ -39,10 +36,9 @@ public class RukushenqingController {
 	public String apply(RukushenqingParam pageParam,Model model) {
 //		ModelMap model = new ModelMap();
 		pageParam.setInSerial(serial);
-		pageParam.setYwyId('1');
 		pageParam.setBumenId(1);
 		try {
-			service.updateStorage(pageParam);
+			service.updateStorage(pageParam,1);
 			model.addAttribute("success", "申请成功");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -61,10 +61,10 @@
 			<table cellspacing="0" cellpadding="10px" style="margin: auto;margin-top: 20px;">
 				<form method="post" action="add">
 					<tr>
-						<td>档案袋编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fileId" name="fileId" type="text" style="height:20px;width:300px" disabled="true" value='${fileId}'>&nbsp;*</td>
+						<td>档案袋编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fileNum" name="fileNum" type="text" style="height:20px;width:300px">&nbsp;*</td>
 					</tr>
 					<tr>
-						<td>档案编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="danganId" name="danganId" type="text" style="height:20px;width:300px" disabled="true" value='${danganId}'>&nbsp;*</td>
+						<td>档案编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="danganNum" name="danganNum" type="text" style="height:20px;width:300px">&nbsp;*</td>
 					</tr>
 					<tr>
 						<td>部门名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -75,10 +75,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="text" style="height:20px;width:300px" disabled="true" value='${qianfengDate}' >&nbsp;*</td>
+						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="text" style="height:20px;width:300px" disabled="true" >&nbsp;*</td>
 					</tr>
 					<tr>
-						<td>到期日：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="daoqiDate" name="daoqiDate" type="text" style="height:20px;width:300px" disabled="true" value='${daoqiDate}' >&nbsp;*</td>
+						<td>到期日：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="daoqiDate" name="daoqiDate" type="text" style="height:20px;width:300px" disabled="true" >&nbsp;*</td>
 					</tr>
 					<tr>
 						<td>封存物品名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

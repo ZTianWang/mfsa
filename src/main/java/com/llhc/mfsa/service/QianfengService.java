@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.QianfengDao;
 import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.helper.DateHelper;
 import com.llhc.mfsa.vo.QianfengParam;
 
@@ -16,26 +17,16 @@ public class QianfengService {
 	@Autowired
 	private QianfengDao dao;
 	
-	public Integer getDanganId() {
-		Integer danganId = dao.selectDanganId()+1;
-		return danganId;
-	}
-	
-	public Integer getFileId() {
-		Integer fileId = dao.selectFileId()+1;
-		return fileId;
-	}
-	
-	public void addItem(QianfengParam qianfengParam) {
-		Integer fileId = qianfengParam.getFileId();
+	public void addItem(QianfengParam qianfengParam,int userId) {
 		DateHelper dateHelper = new DateHelper();
 		Date qianfengDate = dateHelper.getCurrentDate();
 		Date daoqiDate = dateHelper.getDaoqiDate(qianfengDate);
+		String fileNum = qianfengParam.getFileNum().trim();
 		PaperInfo paper = new PaperInfo();
-		paper.setDanganId(qianfengParam.getDanganId());
+		paper.setDanganNum(qianfengParam.getDanganNum().trim());
+		paper.setFileNum(fileNum);
 		paper.setBumenId(qianfengParam.getBumenId());
 		paper.setWupinId(qianfengParam.getWupinId());
-		paper.setFileId(fileId);
 		paper.setQianfengDate(qianfengDate);
 		paper.setDaoqiDate(daoqiDate);
 		String fuzeren = qianfengParam.getFuzeren();
@@ -50,8 +41,11 @@ public class QianfengService {
 		if (!dianhua.equals(null)) {
 			paper.setDianhua(dianhua.trim());
 		}
-//		System.out.println(fileId);
-		dao.insertFile(fileId);
+		paper.setYwyId(userId);
+		StorageInfo storageInfo = new StorageInfo();
+		storageInfo.setFileNum(fileNum);
+		storageInfo.setYwyinId(userId);
+		dao.insertFile(storageInfo);
 		dao.insertPaper(paper);
 	}
 	

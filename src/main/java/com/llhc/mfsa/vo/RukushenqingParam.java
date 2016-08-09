@@ -4,8 +4,7 @@ import java.util.List;
 
 public class RukushenqingParam {
 
-	private List<Integer> danganId;
-	private Character ywyId;
+	private List<String> danganNum;
 	private String inSerial;
 	private int bumenId;
 
@@ -17,14 +16,6 @@ public class RukushenqingParam {
 		this.bumenId = bumenId;
 	}
 
-	public Character getYwyId() {
-		return ywyId;
-	}
-
-	public void setYwyId(Character ywyId) {
-		this.ywyId = ywyId;
-	}
-
 	public String getInSerial() {
 		return inSerial;
 	}
@@ -33,12 +24,12 @@ public class RukushenqingParam {
 		this.inSerial = inSerial;
 	}
 
-	public List<Integer> getDanganId() {
-		return danganId;
+	public List<String> getDanganNum() {
+		return danganNum;
 	}
 
-	public void setDanganId(List<Integer> danganId) {
-		this.danganId = danganId;
+	public void setDanganNum(List<String> danganNum) {
+		this.danganNum = danganNum;
 	}
 
 }

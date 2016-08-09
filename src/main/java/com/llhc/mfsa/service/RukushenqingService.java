@@ -1,11 +1,13 @@
 package com.llhc.mfsa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.RukushenqingDao;
+import com.llhc.mfsa.entity.PaperInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.vo.RukushenqingParam;
@@ -18,25 +20,34 @@ public class RukushenqingService {
 	private RukushenqingDao dao;
 	
 	public List<RukushenqingView> selectPaper() {
-		return dao.selectPaperList();
+		List<PaperInfo> paperlist = dao.selectPaperList();
+		List<RukushenqingView> viewList = new ArrayList<RukushenqingView>();
+		for (PaperInfo paper : paperlist) {
+			RukushenqingView view = new RukushenqingView();
+			view.setBumenName(paper.getBumenName());
+			view.setDanganNum(paper.getDanganNum());
+			view.setQianfengDate(paper.getQianfengDate());
+			viewList.add(view);
+		}
+		return viewList;
 	}
 	
-	public int updateStorage(RukushenqingParam param){
+	public int updateStorage(RukushenqingParam param,Integer ywyId){
 		int count = 0;
 		StorageInfo storageInfo = new StorageInfo();
 		SerialInfo serialInfo = new SerialInfo();
-		List<Integer> idList = param.getDanganId();
+		List<String> numList = param.getDanganNum();
 		serialInfo.setSerialNum(param.getInSerial());
 		serialInfo.setBumenId(param.getBumenId());
-		serialInfo.setYwyId(param.getYwyId());
-		serialInfo.setCount(idList.size());
+		serialInfo.setYwyId(ywyId);
+		serialInfo.setCount(numList.size());
 		try {
 			dao.insertSerial(serialInfo);
-			for (Integer danganId : idList) {
-				Integer fileId = dao.selectFileId(danganId);
-				storageInfo.setFileId(fileId);
+			for (String danganNum : numList) {
+				String fileNum = dao.selectFileNum(danganNum);
+				storageInfo.setFileNum(fileNum);
 				storageInfo.setInSerial(param.getInSerial());
-				storageInfo.setYwyinId(param.getYwyId());
+				storageInfo.setYwyinId(ywyId);
 				count += dao.updateStorage(storageInfo);
 			}
 		} catch (Exception e) {

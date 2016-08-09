@@ -4,25 +4,38 @@ import java.util.Date;
 
 public class StorageInfo {
 
-	private Integer fileId;
+	private Integer id;
+	private String fileNum;
+	private String position;
 	private String inSerial;
-	private Character ywyinId;
-	private Character jhyinId;
-	private Character kgyinId;
+	private Integer ywyinId;
+	private Integer jhyinId;
+	private Integer kgyinId;
 	private Date inDate;
 	private String outSerial;
-	private Character ywyoutId;
-	private Character jhyoutId;
-	private Character kgyoutId;
+	private Integer ywyoutId;
+	private Integer jhyoutId;
+	private Integer kgyoutId;
 	private Date outDate;
-	private Character kucunState;
-	private String position;
+	private Integer kucunState;
 	
-	public Integer getFileId() {
-		return fileId;
+	public Integer getId() {
+		return id;
 	}
-	public void setFileId(Integer fileId) {
-		this.fileId = fileId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getFileNum() {
+		return fileNum;
+	}
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	public String getInSerial() {
 		return inSerial;
@@ -30,22 +43,22 @@ public class StorageInfo {
 	public void setInSerial(String inSerial) {
 		this.inSerial = inSerial;
 	}
-	public Character getYwyinId() {
+	public Integer getYwyinId() {
 		return ywyinId;
 	}
-	public void setYwyinId(Character ywyinId) {
+	public void setYwyinId(Integer ywyinId) {
 		this.ywyinId = ywyinId;
 	}
-	public Character getJhyinId() {
+	public Integer getJhyinId() {
 		return jhyinId;
 	}
-	public void setJhyinId(Character jhyinId) {
+	public void setJhyinId(Integer jhyinId) {
 		this.jhyinId = jhyinId;
 	}
-	public Character getKgyinId() {
+	public Integer getKgyinId() {
 		return kgyinId;
 	}
-	public void setKgyinId(Character kgyinId) {
+	public void setKgyinId(Integer kgyinId) {
 		this.kgyinId = kgyinId;
 	}
 	public Date getInDate() {
@@ -60,22 +73,22 @@ public class StorageInfo {
 	public void setOutSerial(String outSerial) {
 		this.outSerial = outSerial;
 	}
-	public Character getYwyoutId() {
+	public Integer getYwyoutId() {
 		return ywyoutId;
 	}
-	public void setYwyoutId(Character ywyoutId) {
+	public void setYwyoutId(Integer ywyoutId) {
 		this.ywyoutId = ywyoutId;
 	}
-	public Character getJhyoutId() {
+	public Integer getJhyoutId() {
 		return jhyoutId;
 	}
-	public void setJhyoutId(Character jhyoutId) {
+	public void setJhyoutId(Integer jhyoutId) {
 		this.jhyoutId = jhyoutId;
 	}
-	public Character getKgyoutId() {
+	public Integer getKgyoutId() {
 		return kgyoutId;
 	}
-	public void setKgyoutId(Character kgyoutId) {
+	public void setKgyoutId(Integer kgyoutId) {
 		this.kgyoutId = kgyoutId;
 	}
 	public Date getOutDate() {
@@ -84,17 +97,11 @@ public class StorageInfo {
 	public void setOutDate(Date outDate) {
 		this.outDate = outDate;
 	}
-	public Character getKucunState() {
+	public Integer getKucunState() {
 		return kucunState;
 	}
-	public void setKucunState(Character kucunState) {
+	public void setKucunState(Integer kucunState) {
 		this.kucunState = kucunState;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
 	}
 	
 }

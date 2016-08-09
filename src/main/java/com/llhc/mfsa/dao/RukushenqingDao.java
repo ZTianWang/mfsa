@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.llhc.mfsa.entity.PaperInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
-import com.llhc.mfsa.vo.RukushenqingView;
 
 @Component
 public interface RukushenqingDao {
 
-	public List<RukushenqingView> selectPaperList();
+	public List<PaperInfo> selectPaperList();
 	
 	public int updateStorage(StorageInfo storageInfo);
 	
-	public Integer selectFileId(Integer danganId);
+	public String selectFileNum(String danganNum);
 	
 	public int insertSerial(SerialInfo serialInfo);
 	

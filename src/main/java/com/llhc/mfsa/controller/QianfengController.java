@@ -12,8 +12,6 @@ import com.llhc.mfsa.vo.QianfengParam;
 @RequestMapping("/qianfeng")
 public class QianfengController {
 	
-	private Integer danganId;
-	private Integer fileId;
 	
 	@Autowired
 	private QianfengService qianfengService;
@@ -21,10 +19,6 @@ public class QianfengController {
 
 	@RequestMapping("/access") 
 	public String access(Model model) {
-		danganId = qianfengService.getDanganId();
-		fileId = qianfengService.getFileId();
-		model.addAttribute("fileId", fileId);
-		model.addAttribute("danganId", danganId);
 		return "qianfeng";
 		
 	}
@@ -33,12 +27,10 @@ public class QianfengController {
 //	@ResponseBody
 	public String addPaper(QianfengParam qianfengParam,Model model) {
 //		ModelMap model = new ModelMap();
-		qianfengParam.setDanganId(danganId);
-		qianfengParam.setFileId(fileId);
 //		System.out.println(qianfengParam);
 		try {
 //			qianfengService.addFile();
-			qianfengService.addItem(qianfengParam);
+			qianfengService.addItem(qianfengParam,1);
 			model.addAttribute("success", "签封成功");
 		} catch (Exception e) {
 			e.printStackTrace();

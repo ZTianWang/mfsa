@@ -2,50 +2,29 @@ package com.llhc.mfsa.entity;
 
 public class SerialInfo {
 
+	private Integer id;
 	private String serialNum;
-	private int operation;
-	private int state;
-	private int bumenId;
-	private Character ywyId;
-	private int count; 
+	private Integer operation;
+	private Integer state;
+	private Integer bumenId;
+	private Integer ywyId;
+	private Integer kgyId;
+	private Integer count;
 	private String bumenName;
-	private String renyuanName;
+	private String ywyName;
+	private String kgyName;
 	
-	public int getCount() {
-		return count;
+	public String getYwyName() {
+		return ywyName;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setYwyName(String ywyName) {
+		this.ywyName = ywyName;
 	}
-	public String getSerialNum() {
-		return serialNum;
+	public String getKgyName() {
+		return kgyName;
 	}
-	public void setSerialNum(String serialNum) {
-		this.serialNum = serialNum;
-	}
-	public int getOperation() {
-		return operation;
-	}
-	public void setOperation(int operation) {
-		this.operation = operation;
-	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
-	}
-	public int getBumenId() {
-		return bumenId;
-	}
-	public void setBumenId(int bumenId) {
-		this.bumenId = bumenId;
-	}
-	public Character getYwyId() {
-		return ywyId;
-	}
-	public void setYwyId(Character ywyId) {
-		this.ywyId = ywyId;
+	public void setKgyName(String kgyName) {
+		this.kgyName = kgyName;
 	}
 	public String getBumenName() {
 		return bumenName;
@@ -53,11 +32,53 @@ public class SerialInfo {
 	public void setBumenName(String bumenName) {
 		this.bumenName = bumenName;
 	}
-	public String getRenyuanName() {
-		return renyuanName;
+	public Integer getId() {
+		return id;
 	}
-	public void setRenyuanName(String renyuanName) {
-		this.renyuanName = renyuanName;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getSerialNum() {
+		return serialNum;
+	}
+	public void setSerialNum(String serialNum) {
+		this.serialNum = serialNum;
+	}
+	public Integer getOperation() {
+		return operation;
+	}
+	public void setOperation(Integer operation) {
+		this.operation = operation;
+	}
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
+	public Integer getBumenId() {
+		return bumenId;
+	}
+	public void setBumenId(Integer bumenId) {
+		this.bumenId = bumenId;
+	}
+	public Integer getYwyId() {
+		return ywyId;
+	}
+	public void setYwyId(Integer ywyId) {
+		this.ywyId = ywyId;
+	}
+	public Integer getKgyId() {
+		return kgyId;
+	}
+	public void setKgyId(Integer kgyId) {
+		this.kgyId = kgyId;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	
 }

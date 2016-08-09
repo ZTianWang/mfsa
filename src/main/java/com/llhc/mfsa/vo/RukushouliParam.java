@@ -5,8 +5,7 @@ import java.util.List;
 public class RukushouliParam {
 
 	private String serialNum;
-	private Character renyuanId;
-	private List<Integer> danganId;
+	private List<String> danganNum;
 	
 	public String getSerialNum() {
 		return serialNum;
@@ -14,17 +13,11 @@ public class RukushouliParam {
 	public void setSerialNum(String serialNum) {
 		this.serialNum = serialNum;
 	}
-	public Character getRenyuanId() {
-		return renyuanId;
+	public List<String> getDanganNum() {
+		return danganNum;
 	}
-	public void setRenyuanId(Character renyuanId) {
-		this.renyuanId = renyuanId;
-	}
-	public List<Integer> getDanganId() {
-		return danganId;
-	}
-	public void setDanganId(List<Integer> danganId) {
-		this.danganId = danganId;
+	public void setDanganNum(List<String> danganNum) {
+		this.danganNum = danganNum;
 	}
 	
 }

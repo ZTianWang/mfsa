@@ -27,7 +27,7 @@
 		<script type="text/javascript">
 			function selectGroup() {
 				var grp = document.getElementById("check-all");
-				var eles = document.getElementsByName("danganId");
+				var eles = document.getElementsByName("danganNum");
 				for (var i = 0; i < eles.length; i++) {
 					if (eles[i].disabled == false) eles[i].checked = grp.checked;
 				}
@@ -56,11 +56,11 @@
 					<tbody>
 						<c:forEach var="Paper" items="${pageView}">
 							<tr>
-	                			<td>${Paper.danganId}</td>
+	                			<td>${Paper.danganNum}</td>
 	                			<td>${Paper.bumenName}</td>
 	                			<td>${Paper.qianfengDate}</td>
 	                			<td>
-								<input type="checkbox" name="danganId" value='${Paper.danganId}' />
+								<input type="checkbox" name="danganNum" value='${Paper.danganNum}' />
 								</td>
 	           				 </tr>
 						</c:forEach>

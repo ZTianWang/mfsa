@@ -1,11 +1,16 @@
 package com.llhc.mfsa.vo;
 
+import java.util.List;
+
+import com.llhc.mfsa.entity.PaperInfo;
+
 public class RukushouliView {
 
 	private String serialNum;
 	private int count; 
 	private String bumenName;
-	private String renyuanName;
+	private String ywyName;
+	List<PaperInfo> paperlist;
 	
 	public String getSerialNum() {
 		return serialNum;
@@ -25,11 +30,17 @@ public class RukushouliView {
 	public void setBumenName(String bumenName) {
 		this.bumenName = bumenName;
 	}
-	public String getRenyuanName() {
-		return renyuanName;
+	public String getYwyName() {
+		return ywyName;
 	}
-	public void setRenyuanName(String renyuanName) {
-		this.renyuanName = renyuanName;
+	public void setYwyName(String ywyName) {
+		this.ywyName = ywyName;
+	}
+	public List<PaperInfo> getPaperlist() {
+		return paperlist;
+	}
+	public void setPaperlist(List<PaperInfo> paperlist) {
+		this.paperlist = paperlist;
 	}
 	
 }

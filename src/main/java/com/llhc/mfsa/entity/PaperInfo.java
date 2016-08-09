@@ -4,23 +4,32 @@ import java.util.Date;
 
 public class PaperInfo {
 
-	private Integer danganId;
+	private Integer id;
+	private String danganNum;
 	private Integer bumenId;
 	private Integer wupinId;
-	private Integer fileId;
+	private String fileNum;
 	private Date qianfengDate;
 	private Date daoqiDate;
 	private String fuzeren;
 	private String kehujingli;
 	private String dianhua;
+	private Integer ywyId;
 	private String bumenName;
 	private String wupinName;
+	private String ywyName;
 	
-	public Integer getDanganId() {
-		return danganId;
+	public Integer getId() {
+		return id;
 	}
-	public void setDanganId(Integer danganId) {
-		this.danganId = danganId;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getDanganNum() {
+		return danganNum;
+	}
+	public void setDanganNum(String danganNum) {
+		this.danganNum = danganNum;
 	}
 	public Integer getBumenId() {
 		return bumenId;
@@ -34,11 +43,11 @@ public class PaperInfo {
 	public void setWupinId(Integer wupinId) {
 		this.wupinId = wupinId;
 	}
-	public Integer getFileId() {
-		return fileId;
+	public String getFileNum() {
+		return fileNum;
 	}
-	public void setFileId(Integer fileId) {
-		this.fileId = fileId;
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
 	}
 	public Date getQianfengDate() {
 		return qianfengDate;
@@ -70,6 +79,12 @@ public class PaperInfo {
 	public void setDianhua(String dianhua) {
 		this.dianhua = dianhua;
 	}
+	public Integer getYwyId() {
+		return ywyId;
+	}
+	public void setYwyId(Integer ywyId) {
+		this.ywyId = ywyId;
+	}
 	public String getBumenName() {
 		return bumenName;
 	}
@@ -82,5 +97,12 @@ public class PaperInfo {
 	public void setWupinName(String wupinName) {
 		this.wupinName = wupinName;
 	}
+	public String getYwyName() {
+		return ywyName;
+	}
+	public void setYwyName(String ywyName) {
+		this.ywyName = ywyName;
+	}
+	
 	
 }
