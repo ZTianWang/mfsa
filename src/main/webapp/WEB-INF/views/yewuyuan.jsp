@@ -14,7 +14,7 @@
 				<th width=10%><a>申请出库</a></th>
 				<th width=10%><a>出入库查询</a></th>
 				<th width=10%><a>档案信息查询</a></th>
-				<th width=10%><a>业务员信息</a></th>
+				<th width=10%><a href="../account/logout">签退</a></th>
 			</tr>
 		</table>
 		<p>业务员：${sessionScope.realName}</p>

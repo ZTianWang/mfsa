@@ -2,6 +2,8 @@ package com.llhc.mfsa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,14 @@ public class RukushouliController {
 	private RuhushouliService service;
 
 	@RequestMapping("/access")
-	public String access(Model model) {
+	public String access(Model model,HttpSession session) {
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("loginErr", "noUser");
+			return "redirect:/account/loginErr";
+		}else if ((Integer)session.getAttribute("role") != 2) {
+			model.addAttribute("accountErr", "limited");
+			return "redirect:/user";
+		}
 		serialList = service.getSerialList();
 		model.addAttribute("serialList", serialList);
 		return "rukushouli";
@@ -41,13 +50,13 @@ public class RukushouliController {
 	
 	@RequestMapping("/accept")
 //	@ResponseBody
-	public String accept(RukushouliParam param,Model model) {
+	public String accept(RukushouliParam param,Model model,HttpSession session) {
 //		ModelMap model = new ModelMap();
 		param.setSerialNum(serialNum);
 		try {
-			int count = service.accept(param,2);
+			int count = service.accept(param,(Integer)session.getAttribute("userId"));
 			if (count >0) {
-				model.addAttribute("success", "受理成功");
+				model.addAttribute("success", "受理成功!");
 			}else {
 				model.addAttribute("success","受理失败:未查询到档案编号");
 			}

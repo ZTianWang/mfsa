@@ -15,7 +15,7 @@
 				<th width=10%><a>查库</a></th>
 				<th width=10%><a>库房整理</a></th>
 				<th width=10%><a>手工取件</a></th>
-				<th width=10%><a>签退</a></th>
+				<th width=10%><a href="../account/logout">签退</a></th>
 			</tr>
 		</table>
 		<p>库管员：${sessionScope.realName}</p>

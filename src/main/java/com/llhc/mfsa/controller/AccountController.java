@@ -25,6 +25,9 @@ public class AccountController {
 	
 	@RequestMapping("/login")
 	public String account(AccountParam param,Model model,HttpSession session) {
+		if (param.getUserName() == null) {
+			return "login";
+		}
 		UserInfo user = new UserInfo();
 		user.setUserName(param.getUserName());
 		user.setPassword(param.getPassword());
@@ -39,6 +42,22 @@ public class AccountController {
 			session.setAttribute("role", user.getRole());
 			return "forward:/user";
 		}
+	}
+	
+	@RequestMapping("/loginErr")
+	public String loginError(String loginErr,Model model) {
+		if (loginErr.equals("noUser")) {
+			model.addAttribute("loginError", "请先登录");
+		}else if (loginErr.equals("unknownRole")) {
+			model.addAttribute("loginError", "身份验证失败，请重新登录");
+		}
+		return "login";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login";
 	}
 	
 }
