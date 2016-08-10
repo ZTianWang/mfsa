@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.AccountDao">
+
+	<resultMap type="com.llhc.mfsa.entity.UserInfo" id="userMap">
+		<id property="id" column="id"></id>
+		<result property="userName" column="user_name"></result>
+		<result property="realName" column="real_name"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="role" column="role"></result>
+		<result property="password" column="password"></result>
+		<result property="bumenName" column="bumen_name"></result>
+	</resultMap>
+
+	<select id="selectUser" resultMap="userMap">
+		select * from users_info
+		where user_name = #{userName} and password = #{password};
+	</select>
+
+</mapper>

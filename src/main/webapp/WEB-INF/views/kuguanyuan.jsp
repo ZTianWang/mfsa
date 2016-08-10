@@ -18,6 +18,7 @@
 				<th width=10%><a>签退</a></th>
 			</tr>
 		</table>
+		<p>库管员：${sessionScope.realName}</p>
 		<p>${success}</p>
  	</body>
 </html>

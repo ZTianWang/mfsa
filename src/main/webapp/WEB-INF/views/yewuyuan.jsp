@@ -17,6 +17,7 @@
 				<th width=10%><a>业务员信息</a></th>
 			</tr>
 		</table>
+		<p>业务员：${sessionScope.realName}</p>
 		<p>${success}</p>
  	</body>
 </html>
