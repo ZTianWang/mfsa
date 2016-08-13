@@ -104,5 +104,11 @@ public class PaperInfo {
 		this.ywyName = ywyName;
 	}
 	
+	public String toString() {
+		return "PaperInfo [id=" + id + ", danganNum=" + danganNum + ", bumenId=" + bumenId + ", wupinId=" + wupinId
+				+ ", fileNum=" + fileNum + ", qianfengDate=" + qianfengDate + ", daoqiDate=" + daoqiDate + ", fuzeren="
+				+ fuzeren + ", kehujingli=" + kehujingli + ", dianhua=" + dianhua + ", ywyId=" + ywyId + ", bumenName="
+				+ bumenName + ", wupinName=" + wupinName + ", ywyName=" + ywyName + "]";
+	}
 	
 }

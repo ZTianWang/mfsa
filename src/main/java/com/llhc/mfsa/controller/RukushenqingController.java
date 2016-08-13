@@ -34,7 +34,7 @@ public class RukushenqingController {
 		}
 		IdHelper idHelper = new IdHelper();
 		serial = idHelper.getSerialNum();
-		List<RukushenqingView> list = service.selectPaper();
+		List<RukushenqingView> list = service.selectPaper((Integer)session.getAttribute("userId"));
 		model.addAttribute("serial", serial);
 		model.addAttribute("pageView", list);
 		return "rukushenqing";

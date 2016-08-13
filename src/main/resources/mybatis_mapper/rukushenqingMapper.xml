@@ -28,12 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="inDate" column="in_date"></result>
 	</resultMap>
 	
-	<select id="selectPaperList" resultMap="paperMap">
+	<select id="selectPaperList" resultMap="paperMap" parameterType="Integer">
 		select p.*,d.bumen_name
 		from papers_info p left join departments d
 		on p.bumen_id = d.id
 		left join storage_info s on p.file_num = s.file_num
-		where ISNULL(s.in_serial)
+		where ywyin_id=#{ywyId} and ISNULL(s.in_serial)
 	</select>
 	
 	<select id="selectFileNum" parameterType="String" resultType="String">

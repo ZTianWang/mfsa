@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<update id="updateStorage" parameterType="StorageInfo">
 		update storage_info
-		set kgyin_id = #{kgyinId},in_date=NOW(),u_date=NOW()
+		set kgyin_id = #{kgyinId},in_date=NOW(),kucun_state=1,u_date=NOW()
 		where file_num = #{fileNum};
 	</update>
 	<update id="updateSerial" parameterType="SerialInfo">

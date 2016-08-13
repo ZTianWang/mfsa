@@ -11,7 +11,7 @@
 			<tr>
 				<th width=10%><a href="../qianfeng/access">档案签封</a></th>
 				<th width=10%><a href="../rksq/access">申请入库</a></th>
-				<th width=10%><a>申请出库</a></th>
+				<th width=10%><a href="../cksq/access">申请出库</a></th>
 				<th width=10%><a>出入库查询</a></th>
 				<th width=10%><a>档案信息查询</a></th>
 				<th width=10%><a href="../account/logout">签退</a></th>

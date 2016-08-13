@@ -7,15 +7,16 @@ import org.springframework.stereotype.Component;
 import com.llhc.mfsa.entity.PaperInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
+import com.llhc.mfsa.vo.ChukushenqingParam;
 
 @Component
-public interface RukushenqingDao {
+public interface ChukushenqingDao {
 
-	public List<PaperInfo> selectPaperList(Integer ywyId);
+	public List<PaperInfo> selectPaperList(ChukushenqingParam param);
+	
+	public String selectFileNum(Integer danganId);
 	
 	public int updateStorage(StorageInfo storageInfo);
-	
-	public String selectFileNum(String danganNum);
 	
 	public int insertSerial(SerialInfo serialInfo);
 	

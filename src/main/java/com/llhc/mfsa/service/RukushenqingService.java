@@ -19,8 +19,8 @@ public class RukushenqingService {
 	@Autowired
 	private RukushenqingDao dao;
 	
-	public List<RukushenqingView> selectPaper() {
-		List<PaperInfo> paperlist = dao.selectPaperList();
+	public List<RukushenqingView> selectPaper(Integer ywyId) {
+		List<PaperInfo> paperlist = dao.selectPaperList(ywyId);
 		List<RukushenqingView> viewList = new ArrayList<RukushenqingView>();
 		for (PaperInfo paper : paperlist) {
 			RukushenqingView view = new RukushenqingView();

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.ChukushenqingDao">
+
+	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="paperMap">
+		<id property="id" column="id"></id>
+		<result property="danganNum" column="dangan_num"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="wupinId" column="wupin_id"></result>
+		<result property="fileNum" column="file_num"></result>
+		<result property="qianfengDate" column="qianfeng_date"></result>
+		<result property="daoqiDate" column="daoqi_date"></result>
+		<result property="fuzeren" column="fuzeren"></result>
+		<result property="kehujingli" column="kehujingli"></result>
+		<result property="dianhua" column="dianhua"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="wupinName" column="wupin_name"></result>
+	</resultMap>
+	<resultMap type="com.llhc.mfsa.entity.StorageInfo" id="storageMap">
+		<id property="id" column="id"></id>
+		<result property="outSerial" column="out_serial"></result>
+		<result property="ywyoutId" column="ywyout_id"></result>
+		<result property="jhyoutId" column="jhyout_id"></result>
+		<result property="kgyoutId" column="kgyout_id"></result>
+		<result property="outDate" column="out_date"></result>
+	</resultMap>
+	
+	<select id="selectPaperList" parameterType="com.llhc.mfsa.vo.ChukushenqingParam" resultMap="paperMap">
+		SELECT p.*,d.bumen_name FROM papers_info p
+		left join departments d
+		on p.bumen_id = d.id
+		left join storage_info s
+		on p.file_num = s.file_num
+		<where>
+		<!-- <![CDATA[qianfeng_date >= #{qianfengDateF}]]> -->
+			p.bumen_id=#{bumenId} and s.kucun_state = 1 and ISNULL(s.out_serial)
+			<if test=' danganNum != "" '>
+				and dangan_num = #{danganNum}
+			</if>
+			<if test="qianfengDateF!=null and qianfengDateF!=''">
+				<choose>
+					<when test="qianfengDateL!=null and qianfengDateL!=''">
+						and (qianfeng_date BETWEEN #{qianfengDateF} and #{qianfengDateL})
+					</when>
+					<otherwise>
+						<![CDATA[and qianfeng_date >= #{qianfengDateF}]]>
+					</otherwise>
+				</choose>
+			</if>
+			<if test="qianfengDateL!=null and qianfengDateL!=''">
+				<if test="qianfengDateF==null or qianfengDateF==''">
+					<![CDATA[and qianfeng_date <= #{qianfengDateL}]]>
+				</if>
+			</if>
+			<if test="daoqiDateF!=null and daoqiDateF!=''">
+				<choose>
+					<when test="daoqiDateL!=null and daoqiDateL!=''">
+						and (daoqi_date BETWEEN #{daoqiDateF} and #{daoqiDateL})
+					</when>
+					<otherwise>
+						<![CDATA[and daoqi_date >= #{daoqiDateF}]]>
+					</otherwise>
+				</choose>
+			</if>
+			<if test="daoqiDateL!=null and daoqiDateL!=''">
+				<if test="daoqiDateF==null or daoqiDateF==''">
+						<![CDATA[and daoqi_date <= #{daoqiDateL}]]>
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectFileNum" parameterType="Integer" resultType="String">
+		select file_num from papers_info where id=#{danganId};
+	</select>
+	
+	<insert id="insertSerial" parameterType="SerialInfo" >
+		insert into serial_info (serial_num, operation,state,bumen_id,ywy_id,count) values (#{serialNum},2,1,#{bumenId},#{ywyId},#{count});
+	</insert>
+	
+	<update id="updateStorage" parameterType="StorageInfo">
+		update storage_info
+		set out_serial = #{outSerial},ywyout_id=#{ywyoutId},u_date=NOW()
+		where file_num = #{fileNum};
+	</update>
+
+</mapper>
