@@ -21,6 +21,7 @@ public class RukushouliController {
 	
 	private List<RukushouliView> serialList;
 	private String serialNum;
+	private int tote = 0;
 	
 	@Autowired
 	private RuhushouliService service;
@@ -35,6 +36,13 @@ public class RukushouliController {
 			return "redirect:/user";
 		}
 		serialList = service.getSerialList();
+		if (serialList.size() > 0) {
+			for (RukushouliView view : serialList) {
+				tote += view.getCount();
+			}
+		}
+		model.addAttribute("tote", tote);
+		model.addAttribute("count", 0);
 		model.addAttribute("serialList", serialList);
 		return "rukushouli";
 	}
@@ -43,6 +51,8 @@ public class RukushouliController {
 	public String queryPapers(@RequestParam("serialNum")String serialNum,Model model) {
 		this.serialNum = serialNum;
 		RukushouliView view = service.queryPapers(serialNum);
+		model.addAttribute("tote", tote);
+		model.addAttribute("count", view.getPaperlist().size());
 		model.addAttribute("serialList", serialList);
 		model.addAttribute("paperInfo", view);
 		return "rukushouli";
@@ -58,7 +68,7 @@ public class RukushouliController {
 			if (count >0) {
 				model.addAttribute("success", "受理成功!");
 			}else {
-				model.addAttribute("success","受理失败:未查询到档案编号");
+				model.addAttribute("success","受理失败:未查询到档案编号！");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

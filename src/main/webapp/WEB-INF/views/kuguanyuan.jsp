@@ -10,7 +10,7 @@
     	<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
 			<tr>
 				<th width=10%><a href="../rksl/access">入库受理</a></th>
-				<th width=10%><a>出库受理</a></th>
+				<th width=10%><a href="../cksl/access">出库受理</a></th>
 				<th width=10%><a>查询</a></th>
 				<th width=10%><a>查库</a></th>
 				<th width=10%><a>库房整理</a></th>

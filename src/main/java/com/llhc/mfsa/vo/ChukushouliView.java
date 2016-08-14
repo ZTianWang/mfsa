@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.llhc.mfsa.entity.PaperInfo;
 
-public class RukushouliView {
+public class ChukushouliView {
 
 	private String serialNum;
 	private int count; 
@@ -42,5 +42,6 @@ public class RukushouliView {
 	public void setPaperlist(List<PaperInfo> paperlist) {
 		this.paperlist = paperlist;
 	}
+	
 	
 }

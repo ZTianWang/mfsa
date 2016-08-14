@@ -57,6 +57,16 @@
 	</head>
 
 	<body>
+		<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
+			<tr>
+				<th width=10%><a href="../qianfeng/access">档案签封</a></th>
+				<th width=10%><a href="../rksq/access">申请入库</a></th>
+				<th width=10%><a href="../cksq/access">申请出库</a></th>
+				<th width=10%><a>出入库查询</a></th>
+				<th width=10%><a>档案信息查询</a></th>
+				<th width=10%><a href="../account/logout">签退</a></th>
+			</tr>
+		</table>
 		<div class="qfjm">
 			<table cellspacing="0" cellpadding="10px" style="margin: auto;margin-top: 20px;">
 				<form method="post" action="add">
