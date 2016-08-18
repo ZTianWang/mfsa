@@ -35,7 +35,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join storage_info s
 		on p.file_num = s.file_num
 		<where>
-		<!-- <![CDATA[qianfeng_date >= #{qianfengDateF}]]> -->
 			p.bumen_id=#{bumenId} and s.kucun_state = 1 and ISNULL(s.out_serial)
 			<if test=' danganNum != "" '>
 				and dangan_num = #{danganNum}

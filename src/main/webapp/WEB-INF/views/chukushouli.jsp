@@ -92,7 +92,7 @@
 			</tr>
 			<tr>
 				<td>
-					<table border="1" style="margin: auto;">
+					<table border="1" style="margin: auto;" cellspacing="0px" cellpadding="">
 						<tr>
 							<td>
 								<table width="80%">
@@ -110,7 +110,7 @@
 						<tr>
 							<td>
 								<div class="daxx">
-									<table width=100%>
+									<table width=100% border="0" cellspacing="0px" cellpadding="">
 										<!-- 流水号列开始  -->
 										<tbody>
 											<form name="form1" action="">
@@ -147,10 +147,10 @@
 	<div class="qfjm2">
 		文件数：${count}份
 		<div class="daxx2">
-			<table style="margin: auto; width: 950px;">
+			<table style="margin: auto; width: 950px;" border="1px" cellspacing="0px" cellpadding="">
 				<tr>
 					<td>
-						<table border="1px" style="margin: auto;">
+						<table border="1px" style="margin: auto;"  cellspacing="0px" cellpadding="">
 							<tr>
 								<td>
 									<table width="80%">
@@ -170,7 +170,7 @@
 								</td>
 							</tr>
 							<td>
-								<table width=100%>
+								<table width=100% border="1" cellspacing="0px" cellpadding="">
 									<!-- 流水号列开始  -->
 									<tbody>
 										<c:forEach var="paper" items="${paperInfo.paperlist}">

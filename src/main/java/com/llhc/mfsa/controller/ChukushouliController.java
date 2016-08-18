@@ -54,7 +54,9 @@ public class ChukushouliController {
 	@RequestMapping("/query")
 	public String queryPapers(ChukushouliParam param,Model model) {
 //		this.serialNum = serialNum;
-		papers= service.queryPapers(param.getSerialNum());
+		if (param.getSerialNum() != null) {
+			papers= service.queryPapers(param.getSerialNum());
+		}
 //		System.out.println(view.getPaperlist().size());
 		return "redirect:/cksl/access";
 //		return "chukushouli";

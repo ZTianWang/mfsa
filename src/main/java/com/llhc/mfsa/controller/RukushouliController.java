@@ -42,6 +42,7 @@ public class RukushouliController {
 			}
 		}
 		model.addAttribute("tote", tote);
+		tote = 0;
 		model.addAttribute("count", 0);
 		model.addAttribute("serialList", serialList);
 		return "rukushouli";
@@ -66,6 +67,7 @@ public class RukushouliController {
 		try {
 			int count = service.accept(param,(Integer)session.getAttribute("userId"));
 			if (count >0) {
+				service.send();
 				model.addAttribute("success", "受理成功!");
 			}else {
 				model.addAttribute("success","受理失败:未查询到档案编号！");

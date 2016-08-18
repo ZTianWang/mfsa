@@ -20,7 +20,7 @@ import com.llhc.mfsa.vo.ChukushenqingView;
 @RequestMapping("/cksq")
 public class ChukushenqingController {
 
-	private String serial = new IdHelper().getSerialNum();
+	private String serial;
 	private List<ChukushenqingView> views = null;
 	private List<ChukushenqingView> papers = new ArrayList<ChukushenqingView>();
 
@@ -57,6 +57,7 @@ public class ChukushenqingController {
 			}
 		}
 		model.addAttribute("count", papers.size());
+		serial = new IdHelper().getSerialNum();
 		model.addAttribute("serial", serial);
 		return "chukushenqing";
 		 }
@@ -115,9 +116,10 @@ public class ChukushenqingController {
 			Iterator<ChukushenqingView> iterator = papers.iterator();
 	        while(iterator.hasNext()){
 	            ChukushenqingView viewP = iterator.next();
-	            if(viewP.getDanganId() == danganId)
-	                iterator.remove();   //注意这个地方
+	            if(viewP.getDanganId() == danganId) {
+	                iterator.remove();   //注意这个地方 
 	            	views.add(viewP);
+	            }
 	        }
 //			for (ChukushenqingView viewP : papers) {
 //				if (danganId == viewP.getDanganId()) {

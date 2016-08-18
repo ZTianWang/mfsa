@@ -10,6 +10,7 @@ import com.llhc.mfsa.dao.RukushouliDao;
 import com.llhc.mfsa.entity.PaperInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
+import com.llhc.mfsa.helper.TcpClient;
 import com.llhc.mfsa.vo.RukushouliParam;
 //import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.vo.RukushouliView;
@@ -41,10 +42,9 @@ public class RuhushouliService {
 		return view;
 	}
 	
-	public int accept(RukushouliParam param,Integer kgyId) {
+	public int accept(RukushouliParam param,Integer kgyId) throws Exception{
 		StorageInfo storageInfo = new StorageInfo();
 		int count = 0;
-		try {
 			List<String> numList = param.getDanganNum();
 			if (numList == null) {
 				return 0;
@@ -60,10 +60,11 @@ public class RuhushouliService {
 			serialInfo.setSerialNum(param.getSerialNum());
 			dao.updateSerial(serialInfo);
 			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
+	}
+	
+	public void send() {
+		TcpClient client = new TcpClient("入库申请");
+		client.start();
 	}
 	
 }

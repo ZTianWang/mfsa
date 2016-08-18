@@ -42,15 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectPaperList" resultMap="paperMap">
 		select p.*,d.bumen_name,i.wupin_name
-		from papers_info p left join storage_info st
-		on p.file_num = st.file_num
-		left join serial_info se
-		on st.out_serial = se.serial_num
+		from papers_info p left join storage_info s
+		on p.file_num = s.file_num
 		left join departments d
 		on p.bumen_id = d.id
 		left join items i
 		on p.wupin_id = i.id
-		where se.serial_num in
+		where s.out_serial in
 		<foreach item="serialNum" index="index" collection="list" open="(" separator="," close=")">  
   		#{serialNum} 
   		</foreach>

@@ -23,5 +23,8 @@ public class ChukushouliParam {
 		this.serialNum = serialNum;
 	}
 
+	public String toString() {
+		return "ChukushouliParam [kgyId=" + kgyId + ", serialNum=" + serialNum + "]";
+	}
 
 }

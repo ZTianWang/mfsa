@@ -86,8 +86,8 @@
 				</table>
 			</div>
 				<input style="margin-left: 120px;margin-top: 20px;" type="submit" value="确认" />
-				<input style="margin-left: 150px;margin-top: 20px;" type="button" value="取消" />
-				<input style="margin-left: 150px;margin-top: 20px;" type="button" value="打印" />
+				<input style="margin-left: 150px;margin-top: 20px;" type="reset" value="取消" />
+				<!-- <input style="margin-left: 150px;margin-top: 20px;" type="button" value="打印" /> -->
 			</form>
 		</div>
 	</body>
