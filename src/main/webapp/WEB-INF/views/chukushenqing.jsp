@@ -65,6 +65,11 @@
 				document.form2.submit();
 			}
 			
+			function act3() {
+				document.form2.action = "urgency";
+				document.form2.submit();
+			}
+			
 		</script>
 
 	</head>
@@ -180,6 +185,7 @@
 				</table>
 				<input id="check-all" style="margin-left: 120px; margin-top: 10px;" type="checkbox" onclick="selectGroup()" />全选 &nbsp;
 				<input style="margin-left: 20px; margin-top: 10px;" type="button" value="申请出库" onclick="act1();" />
+				<input style="margin-left: 20px; margin-top: 10px;" type="button" value="紧急出库" onclick="act3();" />
 				<input style="margin-left: 20px; margin-top: 10px;" type="button" value="移除" onclick="act2();" />
 			</div>
 		</div>

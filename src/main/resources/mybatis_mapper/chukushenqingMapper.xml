@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="daoqiDateL!=null and daoqiDateL!=''">
 				<if test="daoqiDateF==null or daoqiDateF==''">
-						<![CDATA[and daoqi_date <= #{daoqiDateL}]]>
+					<![CDATA[and daoqi_date <= #{daoqiDateL}]]>
 				</if>
 			</if>
 		</where>
@@ -84,6 +84,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update storage_info
 		set out_serial = #{outSerial},ywyout_id=#{ywyoutId},u_date=NOW()
 		where file_num = #{fileNum};
+	</update>
+	
+	<update id="updateSerial" parameterType="String">
+		update serial_info
+		set operation=3,u_date=NOW()
+		where serial_num = #{serialNum};
 	</update>
 
 </mapper>

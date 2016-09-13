@@ -20,4 +20,6 @@ public interface ChukushenqingDao {
 	
 	public int insertSerial(SerialInfo serialInfo);
 	
+	public int updateSerial(String serialNum);
+	
 }

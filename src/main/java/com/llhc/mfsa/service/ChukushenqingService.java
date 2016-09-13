@@ -19,7 +19,7 @@ public class ChukushenqingService {
 	@Autowired
 	ChukushenqingDao dao;
 	
-	public List<ChukushenqingView> queryPaperLisr(ChukushenqingParam param) {
+	public List<ChukushenqingView> queryPaperList(ChukushenqingParam param) {
 //		param.setBumenId(bumenId);
 		List<PaperInfo> papers = dao.selectPaperList(param);
 		List<ChukushenqingView> views = new ArrayList<ChukushenqingView>();
@@ -57,6 +57,15 @@ public class ChukushenqingService {
 			e.printStackTrace();
 		}
 		return count;
+	}
+	
+	public int updateSerial(ChukushenqingParam param,Integer ywyId,Integer bumenId) {
+		int count = updateStorage(param,ywyId,bumenId);
+		if (count > 0) {
+			dao.updateSerial(param.getSerial());
+			return 1;
+		}
+		return 0;
 	}
 	
 }

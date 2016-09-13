@@ -68,7 +68,7 @@ public class ChukushenqingController {
 //		System.out.println(param);
 //		System.out.println((Integer)session.getAttribute("bumenId"));
 		param.setBumenId((Integer)session.getAttribute("bumenId"));
-		views = service.queryPaperLisr(param);
+		views = service.queryPaperList(param);
 //		views = service.queryPaperLisr(param, 1);
 		return "redirect:/cksq/access";
 	}
@@ -102,6 +102,27 @@ public class ChukushenqingController {
 			e.printStackTrace();
 			model.addAttribute("success", "申请失败");
 			model.addAttribute("ErrorMessage", e.getMessage());
+		}
+		return "yewuyuan";
+	}
+	
+	@RequestMapping("/urgency")
+	public String urgency(ChukushenqingParam param,HttpSession session,Model model) {
+		param.setSerial(serial);
+		try {
+			int suc = service.updateSerial(param,(Integer)session.getAttribute("userId"),(Integer)session.getAttribute("bumenId"));
+			if (suc == 1) {
+				model.addAttribute("success", "申请成功");
+			}else {
+				model.addAttribute("success", "申请失败");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("success", "申请失败");
+			model.addAttribute("ErrorMessage", e.getMessage());
+		}finally {
+			views = null;
+			papers.clear();
 		}
 		return "yewuyuan";
 	}
