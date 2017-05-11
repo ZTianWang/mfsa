@@ -8,16 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class RoleController {
-
-//	@RequestMapping("/ywy")
-//	public String ywyAccount() {
-//		return "yewuyuan";
-//	}
-//	
-//	@RequestMapping("/kgy")
-//	public String kgyAccount() {
-//		return "kuguanyuan";
-//	}
 	
 	@RequestMapping("/user")
 	public String userRole(Model model,HttpSession session,String accountErr) {

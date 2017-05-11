@@ -11,26 +11,27 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.llhc.mfsa.service.QianfengService;
+import com.llhc.mfsa.service.LsruqfService;
 import com.llhc.mfsa.vo.QianfengParam;
 
 @Controller
-@RequestMapping("/qianfeng")
-public class QianfengController {
-	
+@RequestMapping("/lsrkqf")
+public class LsrkqfController {
+
 	@Autowired
-	private QianfengService qianfengService;
+	public LsruqfService service;
 	
 	@RequestMapping("/access")
 	public String access(Model model,HttpSession session) {
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("loginErr", "noUser");
 			return "redirect:/account/loginErr";
-		}else if ((Integer)session.getAttribute("role") != 1) {
+		}else if ((Integer)session.getAttribute("role") != 2) {
+			System.out.println((Integer)session.getAttribute("role"));
 			model.addAttribute("accountErr", "limited");
 			return "redirect:/user";
 		}
-		return "qianfeng";
+		return "lsrkqf";
 	}
 	
 	@RequestMapping("/add")
@@ -38,9 +39,9 @@ public class QianfengController {
 	public Map<String, Object> addPaper(QianfengParam qianfengParam,HttpSession session) {
 		ModelMap model = new ModelMap();
 		try {
-			int checkout = qianfengService.checkout(qianfengParam);
+			int checkout = service.checkout(qianfengParam);
 			if (checkout == 0) {
-				qianfengService.addItem(qianfengParam,(Integer)session.getAttribute("userId"));
+				service.addItem(qianfengParam,(Integer)session.getAttribute("userId"));
 				model.addAttribute("success", true);
 			}else {
 				model.addAttribute("success", false);

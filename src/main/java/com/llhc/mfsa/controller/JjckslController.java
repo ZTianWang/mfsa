@@ -20,14 +20,12 @@ import com.llhc.mfsa.vo.JjckslView;
 @Controller
 @RequestMapping("/jjcksl")
 public class JjckslController {
-
+	
 	@Autowired
 	JjckslService service;
 	
 	@RequestMapping("/access")
 	public String access(Model model,HttpSession session) {
-		session.setAttribute("userId",2);
-		session.setAttribute("role",2);
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("loginErr", "noUser");
 			return "redirect:/account/loginErr";

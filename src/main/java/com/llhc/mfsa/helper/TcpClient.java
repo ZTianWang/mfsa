@@ -6,13 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 public class TcpClient extends Thread{
 
-	private String mes;
+	private List<String> files;
 	
-	public TcpClient(String mes) {
-		this.mes = mes;
+	public TcpClient(List<String> mes) {
+		files = mes;
 	}
 	
 	public void run() {
@@ -25,16 +26,15 @@ public class TcpClient extends Thread{
 //			InputStream is = new ByteArrayInputStream(mes.getBytes());
 //			BufferedReader sin = new BufferedReader(new InputStreamReader(is));
 			PrintWriter os = new PrintWriter(socket.getOutputStream());
-//			String line = sin.readLine();
-//			while(!line.equals("bye")){
-				os.println(mes);
-				os.flush();
-				System.out.println("client:"+mes);
+//			os.println(file);
+//			System.out.println("client:"+file);
+			for (String file : files) {
+				os.println(file);
+				System.out.println("client:"+file);
+			}
+			os.flush();
 			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				System.out.println("server:"+br.readLine());
-//				line = sin.readLine();
-//			}
-				
+			System.out.println("server:"+br.readLine());
 			br.close();
 			os.close();
 			socket.close();

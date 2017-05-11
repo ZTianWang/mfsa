@@ -75,10 +75,10 @@
 			<tr>
 				<th width=10%><a href="../rksl/access">入库受理</a></th>
 				<th width=10%><a href="../cksl/access">出库受理</a></th>
+				<th width=10%><a href="../lsrkqf/access">临时入库签封</a></th>
+				<th width=10%><a href="../jjcksl/access">紧急出库受理</a></th>
 				<th width=10%><a>查询</a></th>
 				<th width=10%><a>查库</a></th>
-				<th width=10%><a>库房整理</a></th>
-				<th width=10%><a>手工取件</a></th>
 				<th width=10%><a href="../account/logout">签退</a></th>
 			</tr>
 		</table>

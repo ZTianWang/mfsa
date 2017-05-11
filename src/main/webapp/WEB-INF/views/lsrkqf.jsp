@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>档案签封</title>
+		<title>临时入库签封</title>
 		<style type="text/css">
 			.qfjm {
 				width: 600px;
@@ -28,7 +28,7 @@
 					dataType:"json",
 					success:function(data,textStatus){
 						if (data.success) {
-							alert("签封成功");
+							alert("签封入库成功");
 							window.location.href="../user"
 						} else{
 							alert(data.errorMsg);
@@ -80,11 +80,12 @@
 	<body>
 		<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
 			<tr>
-				<th width=10%><a href="../qianfeng/access">档案签封</a></th>
-				<th width=10%><a href="../rksq/access">申请入库</a></th>
-				<th width=10%><a href="../cksq/access">申请出库</a></th>
-				<th width=10%><a>出入库查询</a></th>
-				<th width=10%><a>档案信息查询</a></th>
+				<th width=10%><a href="../rksl/access">入库受理</a></th>
+				<th width=10%><a href="../cksl/access">出库受理</a></th>
+				<th width=10%><a href="../lsrkqf/access">临时入库签封</a></th>
+				<th width=10%><a href="../jjcksl/access">紧急出库受理</a></th>
+				<th width=10%><a>查询</a></th>
+				<th width=10%><a>查库</a></th>
 				<th width=10%><a href="../account/logout">签退</a></th>
 			</tr>
 		</table>
@@ -106,7 +107,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="date" style="height:20px;width:300px" readonly="readonly">&nbsp;*</td>
+						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="date" style="height:20px;width:300px" disabled="disabled">&nbsp;*</td>
 					</tr>
 					<tr>
 						<td>到期日：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="daoqiDate" name="daoqiDate" type="date" style="height:20px;width:300px" >&nbsp;*</td>
@@ -128,7 +129,7 @@
 						<td>电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="dianhua" name="dianhua" type="text" style="height:20px;width:300px"></td>
 					</tr>
 					<tr>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="submit" type="submit" value="确定" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取消"></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="submit" type="submit" value="确认签封入库" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取消"></td>
 					</tr>
 				</form>
 			</table>

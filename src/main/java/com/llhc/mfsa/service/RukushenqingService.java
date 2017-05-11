@@ -14,7 +14,7 @@ import com.llhc.mfsa.vo.RukushenqingParam;
 import com.llhc.mfsa.vo.RukushenqingView;
 
 @Service
-public class RukushenqingService {
+public class RukushenqingService{
 
 	@Autowired
 	private RukushenqingDao dao;
@@ -32,7 +32,7 @@ public class RukushenqingService {
 		return viewList;
 	}
 	
-	public int updateStorage(RukushenqingParam param,Integer ywyId){
+	public int updateStorage(RukushenqingParam param,Integer ywyId) throws Exception{
 		int count = 0;
 		StorageInfo storageInfo = new StorageInfo();
 		SerialInfo serialInfo = new SerialInfo();
@@ -41,7 +41,7 @@ public class RukushenqingService {
 		serialInfo.setBumenId(param.getBumenId());
 		serialInfo.setYwyId(ywyId);
 		serialInfo.setCount(numList.size());
-		try {
+//		try {
 			dao.insertSerial(serialInfo);
 			for (String danganNum : numList) {
 				String fileNum = dao.selectFileNum(danganNum);
@@ -50,9 +50,9 @@ public class RukushenqingService {
 				storageInfo.setYwyinId(ywyId);
 				count += dao.updateStorage(storageInfo);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		return count;
 	}
 	

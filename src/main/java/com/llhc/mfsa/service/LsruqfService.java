@@ -5,17 +5,17 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.llhc.mfsa.dao.QianfengDao;
+import com.llhc.mfsa.dao.LsruqfDao;
 import com.llhc.mfsa.entity.PaperInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.helper.DateHelper;
 import com.llhc.mfsa.vo.QianfengParam;
 
 @Service
-public class QianfengService {
+public class LsruqfService {
 
 	@Autowired
-	private QianfengDao dao;
+	private LsruqfDao dao;
 	
 	public int checkout(QianfengParam qianfengParam) {
 		PaperInfo paperInfo = new PaperInfo();
@@ -59,14 +59,9 @@ public class QianfengService {
 		paper.setYwyId(userId);
 		StorageInfo storageInfo = new StorageInfo();
 		storageInfo.setFileNum(fileNum);
-		storageInfo.setYwyinId(userId);
+		storageInfo.setKgyinId(userId);
 		dao.insertFile(storageInfo);
 		dao.insertPaper(paper);
 	}
-	
-//	public int addFile() {
-//		int count = dao.insertFile(fileId);
-//		return count;
-//	}
 	
 }

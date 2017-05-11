@@ -19,7 +19,7 @@ public class ChukushouliController {
 	
 	private List<ChukushouliView> views;
 	private ChukushouliView papers = null;
-
+	
 	@Autowired
 	private ChukushouliService service;
 	

@@ -29,7 +29,7 @@ public class ChukushenqingController {
 
 	@RequestMapping("/access")
 	public String access(Model model, HttpSession session) {
-		 if (session.getAttribute("userId") == null) {
+		 if (session.getAttribute("userId") == null)  {
 		 model.addAttribute("loginErr", "noUser");
 		 return "redirect:/account/loginErr";
 		 }else if ((Integer)session.getAttribute("role") != 1) {
@@ -57,8 +57,9 @@ public class ChukushenqingController {
 			}
 		}
 		model.addAttribute("count", papers.size());
-		serial = new IdHelper().getSerialNum();
+		String serial = new IdHelper().getSerialNum();
 		model.addAttribute("serial", serial);
+		this.serial = serial;//改动
 		return "chukushenqing";
 		 }
 	}

@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateStorage" parameterType="StorageInfo">
 		update storage_info
-		set in_serial = #{inSerial},ywyin_id=#{ywyinId},u_date=NOW()
+		set in_serial = #{inSerial},u_date=NOW()
 		where file_num = #{fileNum};
 	</update>
 	

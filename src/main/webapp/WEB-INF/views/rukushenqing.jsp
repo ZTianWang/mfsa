@@ -33,6 +33,36 @@
 				}
 			}
 		</script>
+		<script type="text/javascript" src="../js/jquery-1.9.1.min.js" ></script>
+		<script type="text/javascript" src="../js/jquery.form.min.js.js" ></script>
+		<script type="text/javascript" src="../js/template.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$('#form1').unbind();
+				$('#form1').submit(function(e){
+					var options={
+					url:"apply",
+					type:"post",
+					dataType:"json",
+					success:function(data,textStatus){
+						if (data.success) {
+							alert("申请成功");
+							window.location.href="../user"
+						} else{
+							alert(data.errorMsg);
+						}
+					},
+					error:function(data,textStatus){
+						alert("服务器响应错误");
+					},
+				}
+				$(this).ajaxSubmit(options);
+				e.preventDefault();
+			}); 
+			
+		});
+		</script>
 	</head>
 
 	<body>
@@ -52,39 +82,32 @@
 				<!--取消选择<input name="pick" type="radio" value="" />-->
 				<span style="margin-left: 250px;">流水号：    ${serial} </span>
 			</div>
-			<form method="post" action="apply">
-			<div class="daxx">
-				<table border="1"  style="margin: auto;width: 700px;">
-					<thead>
-						<tr>
-							<th>档案编号</th>
-							<th>部门名称</th>
-							<th>签封日期</th>
-							<th>选择</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="Paper" items="${pageView}">
+			<form id="form1">
+				<div class="daxx">
+					<table border="1"  style="margin: auto;width: 700px;">
+						<thead>
 							<tr>
-	                			<td>${Paper.danganNum}</td>
-	                			<td>${Paper.bumenName}</td>
-	                			<td>${Paper.qianfengDate}</td>
-	                			<td>
-								<input type="checkbox" name="danganNum" value='${Paper.danganNum}' />
-								</td>
-	           				 </tr>
-						</c:forEach>
-<!-- 					<tr>
-							<td>档案编号1</td>
-							<td>部门1</td>
-							<td>xxxx-xx-xx</td>
-							<td>
-								<input type="checkbox" name="danganId" value="" />
-							</td>
-						</tr> -->
-					</tbody>
-				</table>
-			</div>
+								<th>档案编号</th>
+								<th>部门名称</th>
+								<th>签封日期</th>
+								<th>选择</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="Paper" items="${pageView}">
+								<tr>
+		                			<td>${Paper.danganNum}</td>
+		                			<td>${Paper.bumenName}</td>
+		                			<td>${Paper.qianfengDate}</td>
+		                			<td>
+										<input type="checkbox" name="danganNum" value='${Paper.danganNum}' />
+									</td>
+		           				 </tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<input type="hidden" name="inSerial" value='${serial}' />
 				<input style="margin-left: 120px;margin-top: 20px;" type="submit" value="确认" />
 				<input style="margin-left: 150px;margin-top: 20px;" type="reset" value="取消" />
 				<!-- <input style="margin-left: 150px;margin-top: 20px;" type="button" value="打印" /> -->

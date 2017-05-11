@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.llhc.mfsa.dao.QianfengDao">
+<mapper namespace="com.llhc.mfsa.dao.LsruqfDao">
 
 	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="qianfengMap">
 		<id property="id" column="id"></id>
@@ -20,14 +20,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="wupinName" column="wupin_name"></result>
 	</resultMap>
 	
-	<!-- 查询表中全部记录 -->
-	<select id="selectPaperList" resultMap="qianfengMap">
-		select p.*,d.bumen_name,i.wupin_name
-		from papers_info p left join departments d
-		on p.bumen_id = d.id
-		left join items i
-		on p.wupin_id = i.id
-	</select>
 	<select id="checkoutDn" resultMap="qianfengMap">
 		select *
 		from papers_info
@@ -44,8 +36,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{danganNum},#{bumenId},#{wupinId},#{fileNum},#{qianfengDate},#{daoqiDate},#{fuzeren},#{kehujingli},#{dianhua},#{ywyId});
 	</insert>
 	<insert id="insertFile" parameterType="StorageInfo" >
-		insert into storage_info (file_num,ywyin_id)
-		values(#{fileNum},#{ywyinId});
+		insert into storage_info (file_num,in_serial,kgyin_id,in_date,kucun_state)
+		values(#{fileNum},0,#{kgyinId},NOW(),1);
 	</insert>
 	
 </mapper>

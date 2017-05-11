@@ -50,8 +50,10 @@ public class RuhushouliService {
 				return 0;
 			}
 			storageInfo.setKgyinId(kgyId);
+			List<String> fileNums = new ArrayList<String>();
 			for (String danganNum : numList) {
 				String fileNum = dao.selectFileNum(danganNum);
+				fileNums.add(fileNum);
 				storageInfo.setFileNum(fileNum);
 				count += dao.updateStorage(storageInfo);
 			}
@@ -62,9 +64,9 @@ public class RuhushouliService {
 			return count;
 	}
 	
-	public void send() {
-		TcpClient client = new TcpClient("入库申请");
-		client.start();
-	}
+//	public void send() {
+//		TcpClient client = new TcpClient("入库申请");
+//		client.start();
+//	}
 	
 }
