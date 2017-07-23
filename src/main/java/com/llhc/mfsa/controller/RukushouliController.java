@@ -49,7 +49,7 @@ public class RukushouliController {
 	@ResponseBody
 	public Map<String, Object> queryPapers(@RequestParam("serialNum")String serialNum) {
 		ModelMap model = new ModelMap();
-		if (serialNum != null || !"".equals(serialNum)) {
+		if (serialNum != null && !"".equals(serialNum)) {
 			RukushouliView view = service.queryPapers(serialNum);
 			model.addAttribute("count", view.getPaperlist().size());
 			model.addAttribute("paperInfo", view);
@@ -66,7 +66,7 @@ public class RukushouliController {
 	@ResponseBody
 	public Map<String, Object> accept(RukushouliParam param,HttpSession session) {
 		ModelMap model = new ModelMap();
-		if (param.getDanganNum() != null && param.getDanganNum().size() != 0) {
+		if (param.getFileNum() != null && param.getFileNum().size() != 0) {
 			try {
 				int count = service.accept(param,(Integer)session.getAttribute("userId"));
 				if (count >0) {

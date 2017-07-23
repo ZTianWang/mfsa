@@ -1,26 +1,25 @@
 package com.llhc.mfsa.vo;
 
-import java.util.Date;
-
 public class ChukushenqingView {
 	
-	private Integer danganId;
-	private String danganNum;
+	private Integer fileId;
+	private String fileNum;
 	private Integer bumenId;
-	private Date qianfengDate;
-	private String bumenName;
+	private String custName;
+	private String fileName;
+	private String qianfengDate;
 	
-	public Integer getDanganId() {
-		return danganId;
+	public Integer getFileId() {
+		return fileId;
 	}
-	public void setDanganId(Integer danganId) {
-		this.danganId = danganId;
+	public void setFileId(Integer fileId) {
+		this.fileId = fileId;
 	}
-	public String getDanganNum() {
-		return danganNum;
+	public String getFileNum() {
+		return fileNum;
 	}
-	public void setDanganNum(String danganNum) {
-		this.danganNum = danganNum;
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
 	}
 	public Integer getBumenId() {
 		return bumenId;
@@ -28,17 +27,23 @@ public class ChukushenqingView {
 	public void setBumenId(Integer bumenId) {
 		this.bumenId = bumenId;
 	}
-	public Date getQianfengDate() {
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getQianfengDate() {
 		return qianfengDate;
 	}
-	public void setQianfengDate(Date qianfengDate) {
+	public void setQianfengDate(String qianfengDate) {
 		this.qianfengDate = qianfengDate;
-	}
-	public String getBumenName() {
-		return bumenName;
-	}
-	public void setBumenName(String bumenName) {
-		this.bumenName = bumenName;
 	}
 
 }

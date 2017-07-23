@@ -35,6 +35,9 @@
 	<mvc:resources mapping="/css/**" location="/css/" cache-period="28800"/>
 	<mvc:resources mapping="/imgs/**" location="/imgs/" cache-period="28800"/>
 	<mvc:resources mapping="/js/**" location="/js/" cache-period="28800"/>
+	<mvc:resources mapping="/style/**" location="/style/" cache-period="28800"/>
+	<mvc:resources mapping="/images/**" location="/images/" cache-period="28800"/>
+	<mvc:resources mapping="/scripts/**" location="/scripts/" cache-period="28800"/>
 	<!-- <mvc:resources mapping="/upload/**" location="file:#{T(com.haoyoubang.p2p.utils.Config).UPLOAD_IMAGE_PATH}" cache-period="28800"/> -->
 
 <!-- 视图解析器：用于定位资源 -->

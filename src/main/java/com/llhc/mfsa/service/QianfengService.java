@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.QianfengDao;
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.helper.DateHelper;
 import com.llhc.mfsa.vo.QianfengParam;
@@ -17,56 +17,57 @@ public class QianfengService {
 	@Autowired
 	private QianfengDao dao;
 	
-	public int checkout(QianfengParam qianfengParam) {
-		PaperInfo paperInfo = new PaperInfo();
-		paperInfo.setDanganNum(qianfengParam.getDanganNum());
-		paperInfo.setFileNum(qianfengParam.getFileNum());
-		PaperInfo pid = dao.checkoutDn(paperInfo);
-		if (pid != null) {
-			return 1;
+	public int checkout(QianfengParam param) {
+		FileInfo file = dao.checkout(param.getFileNum());
+		if (file != null) {
+			return 0;
 		}
-		PaperInfo pif = dao.checkoutFn(paperInfo);
-		if (pif != null) {
-			return 2;
+		Integer custId = dao.queryId(param.getCustName());
+		if (custId == null || custId == 0) {
+			return -1;
 		}
-		return 0;
+		if (param.getmName() != null && !"".equals(param.getmName().trim())) {
+			Integer mid = dao.queryMId(param.getmName().trim());
+			if (mid == null || mid == 0) {
+				return -2;
+			}
+		}
+		return custId;
 	}
 	
-	public void addItem(QianfengParam qianfengParam,int userId) {
+	public void addItem(QianfengParam param,int custId,int userId) {
 		DateHelper dateHelper = new DateHelper();
 		Date qianfengDate = dateHelper.getCurrentDate();
-		Date daoqiDate = dateHelper.getDaoqiDate(qianfengDate);
-		String fileNum = qianfengParam.getFileNum().trim();
-		PaperInfo paper = new PaperInfo();
-		paper.setDanganNum(qianfengParam.getDanganNum().trim());
-		paper.setFileNum(fileNum);
-		paper.setBumenId(qianfengParam.getBumenId());
-		paper.setWupinId(qianfengParam.getWupinId());
-		paper.setQianfengDate(qianfengDate);
-		paper.setDaoqiDate(daoqiDate);
-		String fuzeren = qianfengParam.getFuzeren();
-		String kehujingli = qianfengParam.getKehujingli();
-		String dianhua = qianfengParam.getDianhua();
-		if (!fuzeren.equals(null)) {
-			paper.setFuzeren(fuzeren.trim());
+		String fileNum = param.getFileNum().trim();
+		FileInfo file = new FileInfo();
+		file.setFileNum(param.getFileNum());
+		file.setCustId(custId);
+		file.setBumenId(param.getBumenId());
+		file.setFileName(param.getFileName());
+		file.setQianfengDate(qianfengDate);
+		if (param.getmName() != null && !"".equals(param.getmName().trim())) {
+			Integer mid = dao.queryMId(param.getmName().trim());
+			file.setmId(mid);
 		}
-		if (!kehujingli.equals(null)) {
-			paper.setKehujingli(kehujingli.trim());
-		}
-		if (!dianhua.equals(null)) {
-			paper.setDianhua(dianhua.trim());
-		}
-		paper.setYwyId(userId);
+		file.setYwyId(userId);
 		StorageInfo storageInfo = new StorageInfo();
 		storageInfo.setFileNum(fileNum);
 		storageInfo.setYwyinId(userId);
-		dao.insertFile(storageInfo);
-		dao.insertPaper(paper);
+		dao.insertFile(file);
+		dao.insertStorage(storageInfo);
 	}
 	
-//	public int addFile() {
-//		int count = dao.insertFile(fileId);
-//		return count;
-//	}
+	public int readd(String num,int userId) {
+		FileInfo file = dao.checkout(num);
+		if (file == null) {
+			return 0;
+		}else {
+			StorageInfo storage = new StorageInfo();
+			storage.setFileNum(num);
+			storage.setYwyinId(userId);
+			int i = dao.updateStorage(storage);
+			return i;
+		}
+	}
 	
 }

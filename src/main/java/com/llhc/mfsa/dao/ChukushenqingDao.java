@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.vo.ChukushenqingParam;
@@ -12,7 +12,7 @@ import com.llhc.mfsa.vo.ChukushenqingParam;
 @Component
 public interface ChukushenqingDao {
 
-	public List<PaperInfo> selectPaperList(ChukushenqingParam param);
+	public List<FileInfo> selectPaperList(ChukushenqingParam param);
 	
 	public String selectFileNum(Integer danganId);
 	

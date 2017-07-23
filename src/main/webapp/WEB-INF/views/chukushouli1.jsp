@@ -55,6 +55,11 @@
 	function f1() {
 		document.form1.action = "accept";
 		document.form1.submit();
+		/* if ($('#tb2 :checked').size()!=0) {
+			document.form2.submit();
+		} else{
+			alert("请选择文件");					
+		} */
 	}
 
 	function f2() {

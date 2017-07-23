@@ -1,33 +1,35 @@
 package com.llhc.mfsa.vo;
 
-import java.util.Date;
-
-
 public class RukushenqingView {
 	
-	private String danganNum;
-	private String bumenName;
-	private Date qianfengDate;
+	private String fileNum;
+	private String fileName; 
+	private String custName;
+	private String qianfengDate;
 	
-	public String getDanganNum() {
-		return danganNum;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setDanganNum(String danganNum) {
-		this.danganNum = danganNum;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	public String getBumenName() {
-		return bumenName;
+	public String getFileNum() {
+		return fileNum;
 	}
-	public void setBumenName(String bumenName) {
-		this.bumenName = bumenName;
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
 	}
-	public Date getQianfengDate() {
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	public String getQianfengDate() {
 		return qianfengDate;
 	}
-	public void setQianfengDate(Date qianfengDate) {
+	public void setQianfengDate(String qianfengDate) {
 		this.qianfengDate = qianfengDate;
 	}
-	
-	
 	
 }

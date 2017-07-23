@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.ChukushouliDao;
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.vo.ChukushouliParam;
@@ -33,33 +33,24 @@ public class ChukushouliService {
 		return viewList;
 	}
 	
-	public ChukushouliView queryPapers(List<String> serials) {
-		List<PaperInfo> paperList = dao.selectPaperList(serials);
-		ChukushouliView view = new ChukushouliView();
-		view.setPaperlist(paperList);
-		return view;
+	public List<FileInfo> queryPapers(List<String> serials) {
+		List<FileInfo> paperList = dao.selectPaperList(serials);
+		return paperList;
 	}
 	
 	public int accept(ChukushouliParam param) {
 		StorageInfo storage = new StorageInfo();
 		int count = 0;
-		
-		try {
-			List<String> serialList = param.getSerialNum();
-			if (serialList == null) {
-				return 0;
-			}
-			storage.setKgyoutId(param.getKgyId());
-			for (String serialNum : serialList) {
-				storage.setOutSerial(serialNum);
-				count += dao.updateStorage(storage);
-			}
-			dao.updateSerial(param);
-			return count;
-		} catch (Exception e) {
-			e.printStackTrace();
+		List<String> serialList = param.getSerialNum();
+		if (serialList == null) {
 			return 0;
 		}
+		storage.setKgyoutId(param.getKgyId());
+		count += dao.updateStorage(param);
+		if (count != 0) {
+			dao.updateSerial(param);
+		}
+		return count;
 	}
 	
 }

@@ -1,23 +1,23 @@
 package com.llhc.mfsa.dao;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 
 @Component
 public interface QianfengDao {
 
-	public int insertPaper(PaperInfo paper);
+	public int insertStorage(StorageInfo storage);
 	
-	public int insertFile(StorageInfo storageInfo);
+	public int insertFile(FileInfo file);
 	
-	public List<PaperInfo> selectPaperList();
+	public int updateStorage(StorageInfo storage);
 	
-	public PaperInfo checkoutDn(PaperInfo paper);
+	public FileInfo checkout(String fileNum);
 	
-	public PaperInfo checkoutFn(PaperInfo paper);
+	public Integer queryId(String name);
+	
+	public Integer queryMId(String name);
 	
 }

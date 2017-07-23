@@ -17,9 +17,11 @@
     </settings>
     
     <typeAliases>
-        <typeAlias type="com.llhc.mfsa.entity.PaperInfo" alias="PaperInfo"/>
+    	<typeAlias type="com.llhc.mfsa.entity.UserInfo" alias="UserInfo"/>
+        <typeAlias type="com.llhc.mfsa.entity.FileInfo" alias="FileInfo"/>
         <typeAlias type="com.llhc.mfsa.entity.StorageInfo" alias="StorageInfo"/>
         <typeAlias type="com.llhc.mfsa.entity.SerialInfo" alias="SerialInfo"/>
+        <typeAlias type="com.llhc.mfsa.entity.CustInfo" alias="CustInfo"/>
     </typeAliases>
     
     

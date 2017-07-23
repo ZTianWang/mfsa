@@ -5,7 +5,7 @@ import java.util.List;
 public class RukushouliParam {
 
 	private String serialNum;
-	private List<String> danganNum;
+	private List<String> fileNum;
 	
 	public String getSerialNum() {
 		return serialNum;
@@ -13,11 +13,11 @@ public class RukushouliParam {
 	public void setSerialNum(String serialNum) {
 		this.serialNum = serialNum;
 	}
-	public List<String> getDanganNum() {
-		return danganNum;
+	public List<String> getFileNum() {
+		return fileNum;
 	}
-	public void setDanganNum(List<String> danganNum) {
-		this.danganNum = danganNum;
+	public void setFileNum(List<String> fileNum) {
+		this.fileNum = fileNum;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.llhc.mfsa.helper;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,6 +18,11 @@ public class DateHelper {
         calendar.add(Calendar.YEAR, +1);
         Date daoqiDate = calendar.getTime();
         return daoqiDate;
+	}
+    
+    public static String dateToStr(Date date) {
+    	SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+    	return dateFormater.format(date);
 	}
     
 }

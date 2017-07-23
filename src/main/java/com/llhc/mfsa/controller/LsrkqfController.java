@@ -41,20 +41,36 @@ public class LsrkqfController {
 		try {
 			int checkout = service.checkout(qianfengParam);
 			if (checkout == 0) {
-				service.addItem(qianfengParam,(Integer)session.getAttribute("userId"));
-				model.addAttribute("success", true);
-			}else {
 				model.addAttribute("success", false);
-				if (checkout == 1) {
-					model.addAttribute("errorMsg", "文件编号重复");
-				} else {
-					model.addAttribute("errorMsg", "档案袋编号重复");
-				}
+				model.addAttribute("errorMsg", "文件编号重复");
+			}else if (checkout == -1) {
+				model.addAttribute("success", false);
+				model.addAttribute("errorMsg", "未查询到客户信息");
+			}else if (checkout == -2) {
+				model.addAttribute("success", false);
+				model.addAttribute("errorMsg", "未查询到负责人信息");
+			}else {
+				service.addItem(qianfengParam,checkout,(Integer)session.getAttribute("userId"));
+				model.addAttribute("success", true);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("success", false);
 			model.addAttribute("errorMsg", e.getMessage());
+		}
+		return model;
+	}
+	
+	@RequestMapping("/readd")
+	@ResponseBody
+	public Map<String, Object> readd(String fileNum,HttpSession session) {
+		ModelMap model = new ModelMap();
+		int i = service.readd(fileNum, (Integer)session.getAttribute("userId"));
+		if (i != 0) {
+			model.addAttribute("success", true);
+		} else {
+			model.addAttribute("success",false);
+			model.addAttribute("errorMsg", "未查到原始记录");
 		}
 		return model;
 	}

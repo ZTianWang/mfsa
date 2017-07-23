@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.llhc.mfsa.dao.WjcxDao">
+
+	<resultMap type="com.llhc.mfsa.entity.FileInfo" id="fileMap">
+		<id property="id" column="id"></id>
+		<result property="fileNum" column="file_num"></result>
+		<result property="custId" column="cust_id"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="fileName" column="file_name"></result>
+		<result property="qianfengDate" column="qianfeng_date"></result>
+		<result property="mId" column="m_id"></result>
+		<result property="ywyId" column="ywy_id"></result>
+		<result property="custName" column="name"></result>
+		<result property="bumenName" column="bumen_name"></result>
+		<result property="mName" column="m_name"></result>
+		<result property="ywyName" column="real_name"></result>
+		<result property="kucunState" column="kucun_state"></result>
+		<result property="position" column="position"></result>
+	</resultMap>
+	
+	<select id="selectFileList" parameterType="com.llhc.mfsa.vo.WjcxParam" resultMap="fileMap">
+		SELECT p.*,d.bumen_name,u.real_name,m.m_name,c.name,s.kucun_state,s.position FROM files_info p
+		left join departments d
+		on p.bumen_id = d.id
+		left join storage_info s
+		on p.file_num = s.file_num
+		left join cust_info c
+		on p.cust_id = c.id
+		left join users_info u
+		on p.ywy_id = u.id
+		left join managers_info m
+		on p.m_id = m.id
+		<where>
+			<if test="fileNum!=null and fileNum!=''">
+				and p.file_num = #{fileNum}
+			</if>
+			<if test="custName!=null and custName!=''">
+				and c.name = #{custName}
+			</if>
+			<if test="fileName!=null and fileName!=''">
+				and file_name = #{fileName}
+			</if>
+			<if test="qianfengDateF!=null and qianfengDateF!=''">
+				<choose>
+					<when test="qianfengDateL!=null and qianfengDateL!=''">
+						and (qianfeng_date BETWEEN #{qianfengDateF} and #{qianfengDateL})
+					</when>
+					<otherwise>
+						<![CDATA[and qianfeng_date >= #{qianfengDateF}]]>
+					</otherwise>
+				</choose>
+			</if>
+			<if test="qianfengDateL!=null and qianfengDateL!=''">
+				<if test="qianfengDateF==null or qianfengDateF==''">
+					<![CDATA[and qianfeng_date <= #{qianfengDateL}]]>
+				</if>
+			</if>
+		</where>
+	</select>
+	
+</mapper>

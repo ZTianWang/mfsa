@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.ChukushenqingDao;
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 import com.llhc.mfsa.vo.ChukushenqingParam;
@@ -20,16 +20,15 @@ public class ChukushenqingService {
 	ChukushenqingDao dao;
 	
 	public List<ChukushenqingView> queryPaperList(ChukushenqingParam param) {
-//		param.setBumenId(bumenId);
-		List<PaperInfo> papers = dao.selectPaperList(param);
+		List<FileInfo> papers = dao.selectPaperList(param);
 		List<ChukushenqingView> views = new ArrayList<ChukushenqingView>();
-		for (PaperInfo paper : papers) {
-//			System.out.println(paper);
+		for (FileInfo paper : papers) {
 			ChukushenqingView view = new ChukushenqingView();
-			view.setDanganId(paper.getId());
-			view.setDanganNum(paper.getDanganNum());
-			view.setBumenName(paper.getBumenName());
-			view.setQianfengDate(paper.getQianfengDate());
+			view.setFileId(paper.getId());
+			view.setFileNum(paper.getFileNum());
+			view.setCustName(paper.getCustName());
+			view.setFileName(paper.getFileName());
+			view.setQianfengDate(paper.getDateStr());
 			views.add(view);
 		}
 		return views;
@@ -39,16 +38,15 @@ public class ChukushenqingService {
 		int count = 0;
 		StorageInfo storageInfo = new StorageInfo();
 		SerialInfo serialInfo = new SerialInfo();
-		List<Integer> idList = param.getDanganId();
+		List<String> numList = param.getFileNums();
 		serialInfo.setSerialNum(param.getSerial());
 		serialInfo.setBumenId(bumenId);
 		serialInfo.setYwyId(ywyId);
-		serialInfo.setCount(idList.size());
+		serialInfo.setCount(numList.size());
 		try {
 			dao.insertSerial(serialInfo);
-			for (Integer danganId : idList) {
-				String fileNum = dao.selectFileNum(danganId);
-				storageInfo.setFileNum(fileNum);
+			for (String num : numList) {
+				storageInfo.setFileNum(num);
 				storageInfo.setOutSerial(param.getSerial());
 				storageInfo.setYwyoutId(ywyId);
 				count += dao.updateStorage(storageInfo);

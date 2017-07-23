@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.RukushenqingDao;
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
+import com.llhc.mfsa.helper.DateHelper;
 import com.llhc.mfsa.vo.RukushenqingParam;
 import com.llhc.mfsa.vo.RukushenqingView;
 
@@ -20,13 +21,14 @@ public class RukushenqingService{
 	private RukushenqingDao dao;
 	
 	public List<RukushenqingView> selectPaper(Integer ywyId) {
-		List<PaperInfo> paperlist = dao.selectPaperList(ywyId);
+		List<FileInfo> paperlist = dao.selectPaperList(ywyId);
 		List<RukushenqingView> viewList = new ArrayList<RukushenqingView>();
-		for (PaperInfo paper : paperlist) {
+		for (FileInfo paper : paperlist) {
 			RukushenqingView view = new RukushenqingView();
-			view.setBumenName(paper.getBumenName());
-			view.setDanganNum(paper.getDanganNum());
-			view.setQianfengDate(paper.getQianfengDate());
+			view.setFileName(paper.getFileName());
+			view.setFileNum(paper.getFileNum());
+			view.setCustName(paper.getCustName());
+			view.setQianfengDate(DateHelper.dateToStr(paper.getQianfengDate()));
 			viewList.add(view);
 		}
 		return viewList;
@@ -36,23 +38,18 @@ public class RukushenqingService{
 		int count = 0;
 		StorageInfo storageInfo = new StorageInfo();
 		SerialInfo serialInfo = new SerialInfo();
-		List<String> numList = param.getDanganNum();
+		List<String> numList = param.getFileNum();
 		serialInfo.setSerialNum(param.getInSerial());
 		serialInfo.setBumenId(param.getBumenId());
 		serialInfo.setYwyId(ywyId);
 		serialInfo.setCount(numList.size());
-//		try {
-			dao.insertSerial(serialInfo);
-			for (String danganNum : numList) {
-				String fileNum = dao.selectFileNum(danganNum);
-				storageInfo.setFileNum(fileNum);
-				storageInfo.setInSerial(param.getInSerial());
-				storageInfo.setYwyinId(ywyId);
-				count += dao.updateStorage(storageInfo);
-			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		dao.insertSerial(serialInfo);
+		for (String fileNum : numList) {
+			storageInfo.setFileNum(fileNum);
+			storageInfo.setInSerial(param.getInSerial());
+			storageInfo.setYwyinId(ywyId);
+			count += dao.updateStorage(storageInfo);
+		}
 		return count;
 	}
 	

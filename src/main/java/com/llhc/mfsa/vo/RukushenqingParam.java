@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RukushenqingParam {
 
-	private List<String> danganNum;
+	private List<String> fileNum;
 	private String inSerial;
 	private int bumenId;
 
@@ -24,12 +24,12 @@ public class RukushenqingParam {
 		this.inSerial = inSerial;
 	}
 
-	public List<String> getDanganNum() {
-		return danganNum;
+	public List<String> getFileNum() {
+		return fileNum;
 	}
 
-	public void setDanganNum(List<String> danganNum) {
-		this.danganNum = danganNum;
+	public void setFileNum(List<String> fileNum) {
+		this.fileNum = fileNum;
 	}
 
 }

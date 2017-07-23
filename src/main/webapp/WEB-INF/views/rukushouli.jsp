@@ -65,6 +65,13 @@
 							url:"query",
 							type:"get",
 							dataType:"json",
+							beforeSubmit:function(){
+								var val=$('input:radio:checked').val();
+					            if(val==null){
+					                alert("请选择文件!");
+					                return false;
+					            }
+							},
 							success:function(data,textStatus){
 								if (data.success) {
 									$('#count').html(data.count);
@@ -92,24 +99,10 @@
 							url:"accept",
 							type:"post",
 							dataType:"json",
-							beforeSubmit:function(){
-								var arr=$("input:checkbox");
-								var is=true;
-								$.each(arr, function(i,val) {
-									if (val.checked==false) {
-										is=false;
-										return true;
-									}
-								});
-								if (is==false) {
-									alert("请核对文件数目");	
-									return false;
-								}
-							},
 							success:function(data,textStatus){
 								if (data.success) {
-									alert(data.sucCount+"件签封成功");
-									window.location.href="../user"
+									alert(data.sucCount+"件入库成功");
+									window.location.reload();
 								} else{
 									alert(data.errorMsg);
 								}
@@ -143,25 +136,6 @@
 	</head>
 
 	<body>
-		<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
-			<tr>
-				<th width=10%><a href="../rksl/access">入库受理</a></th>
-				<th width=10%><a href="../cksl/access">出库受理</a></th>
-				<th width=10%><a href="../lsrkqf/access">临时入库签封</a></th>
-				<th width=10%><a href="../jjcksl/access">紧急出库受理</a></th>
-				<th width=10%><a>查询</a></th>
-				<th width=10%><a>查库</a></th>
-				<th width=10%><a href="../account/logout">签退</a></th>
-			</tr>
-		</table>
-		<div class="qfjm2">
-			<h2>请扫描确认档案入库：</h2>
-		    <!--<form id="form3" action=" " method=" ">-->
-				<textarea id="ta" cols="100" rows="3" id="contactus" name="contactus"></textarea></br>
-				<button id="qrbtn">确认</button>
-				<button id="qxbtn">取消</button>
-		    <!--</form>-->
-		</div>
 		<div class="qfjm1">
 			<div style="margin-top: 30px"></div>
 			<table style="margin: auto;">
@@ -172,7 +146,7 @@
 				<tr>
 					<td>
 						<table border="1px" cellspacing="0px" cellpadding="" style="margin: auto;">
-							<tr>
+							<!-- <tr>
 								<td>
 									<table width="80%">
 										<thead>
@@ -186,10 +160,19 @@
 										</thead>
 									</table>
 								</td>
-							</tr>
+							</tr> -->
 							<td>
 								<div class="daxx">
-									<table width=100%; border="0px" cellspacing="0px" cellpadding="">
+									<table width=100%; border="1" style="margin: auto;" cellspacing="0px" cellpadding="">
+										<thead>
+											<tr>
+												<th>流水号</th>
+												<th>文件数</th>
+												<th>部门名称</th>
+												<th>经办人</th>
+												<th>选择</th>
+											</tr>
+										</thead>
 										<!-- 流水号列开始  -->
 										<tbody>
 											<form id="form1">
@@ -224,7 +207,7 @@
 					<td>
 						<table border="1px" cellspacing="0px" cellpadding="" style="margin: auto;">
 							<tr>
-								<td>
+							<!-- 	<td>
 									<table width="50%">
 										<th>
 											档案编号
@@ -234,21 +217,27 @@
 										</th>
 
 									</table>
-								</td>
+								</td> -->
 							</tr>
 							<td>
 								<div class="daxx">
 									<form id="form2">
 										<input type="hidden" id="sNum" name="serialNum" />
-										<table width=60%; border="0px" cellspacing="0px" cellpadding="">
+										<table width=60%; border="1" style="margin: auto;width:300px;"cellspacing="0px" cellpadding="">
+											<thead>
+												<th>
+													档案袋编号
+												</th>
+												<th>
+													签封日期
+												</th>
+											</thead>
 											<tbody id="tb1">
 												<script type="text/html" id="list1">
 													{{each paper as p}}
 														<tr>
-															<td>{{p.danganNum}}</td>
-															<td>{{p.qianfengDate}}</td>
-															<td>
-																<input type="checkbox" name="danganNum" value='{{p.danganNum}}' />
+															<td>{{p.fileNum}}</td>
+															<td>{{p.dateStr}}<input type="hidden" name="fileNum" value='{{p.fileNum}}' />
 															</td>
 														</tr>
 													{{/each}}
@@ -281,27 +270,21 @@
 					<thead>
 						<tr>
 							<th>档案编号</th>
-							<th>部门名称</th>
-							<th>物品名称</th>
+							<th>档案名称</th>
+							<th>客户姓名</th>
 							<th>签封日期</th>
-							<th>到期日</th>
-							<th>负责人</th>
 							<th>客户经理</th>
-							<th>电话</th>
 						</tr>
 					</thead>
 					<tbody id="tb2">
 						<script type="text/html" id="list2">
 							{{each paper as p}}
 								<tr>
-									<td>{{p.danganNum}}</td>
-									<td>{{p.bumenName}}</td>
-									<td>{{p.wupinName}}</td>
-									<td>{{p.qianfengDate}}</td>
-									<td>{{p.daoqiDate}}</td>
-									<td>{{p.fuzeren}}</td>
-									<td>{{p.kehujingli}}</td>
-									<td>{{p.dianhua}}</td>
+									<td>{{p.fileNum}}</td>
+									<td>{{p.fileName}}</td>
+									<td>{{p.custName}}</td>
+									<td>{{p.dateStr}}</td>
+									<td>{{p.mName}}</td>
 								</tr>
 							{{/each}}
 						</script>

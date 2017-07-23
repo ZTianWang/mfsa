@@ -1,8 +1,8 @@
 package com.llhc.mfsa.service;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
+//import java.net.UnknownHostException;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;

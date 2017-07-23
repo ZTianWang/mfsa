@@ -5,39 +5,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.llhc.mfsa.dao.LsruqfDao">
 
-	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="qianfengMap">
+	<resultMap type="com.llhc.mfsa.entity.FileInfo" id="fileMap">
 		<id property="id" column="id"></id>
-		<result property="danganNum" column="dangan_num"></result>
-		<result property="bumenId" column="bumen_id"></result>
-		<result property="wupinId" column="wupin_id"></result>
 		<result property="fileNum" column="file_num"></result>
+		<result property="custId" column="cust_id"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="fileName" column="file_name"></result>
 		<result property="qianfengDate" column="qianfeng_date"></result>
-		<result property="daoqiDate" column="daoqi_date"></result>
-		<result property="fuzeren" column="fuzeren"></result>
-		<result property="kehujingli" column="kehujingli"></result>
-		<result property="dianhua" column="dianhua"></result>
+		<result property="mId" column="m_id"></result>
+		<result property="ywyId" column="ywy_id"></result>
+		<result property="custName" column="name"></result>
 		<result property="bumenName" column="bumen_name"></result>
-		<result property="wupinName" column="wupin_name"></result>
+		<result property="mName" column="real_name"></result>
+		<result property="ywyName" column="real_name"></result>
 	</resultMap>
 	
-	<select id="checkoutDn" resultMap="qianfengMap">
+	<select id="checkout" parameterType="String" resultMap="fileMap">
 		select *
-		from papers_info
-		where dangan_num=#{danganNum};
-	</select>
-	<select id="checkoutFn" resultMap="qianfengMap">
-		select *
-		from papers_info
+		from files_info
 		where file_num = #{fileNum};
 	</select>
-	<!-- 添加 -->
-	<insert id="insertPaper" parameterType="PaperInfo" >
-		insert into papers_info (dangan_num,bumen_id,wupin_id,file_num,qianfeng_date,daoqi_date,fuzeren,kehujingli,dianhua,ywy_id)
-		values(#{danganNum},#{bumenId},#{wupinId},#{fileNum},#{qianfengDate},#{daoqiDate},#{fuzeren},#{kehujingli},#{dianhua},#{ywyId});
+	<select id="queryId" parameterType="String" resultType="Integer">
+		select id
+		from cust_info
+		where name = #{name};
+	</select>
+	<select id="queryMId" parameterType="String" resultType="Integer">
+		select id
+		from users_info
+		where real_name = #{name} and role=3;
+	</select>
+	<select id="queryFileId" parameterType="String" resultType="Integer">
+		select id
+		from files_info
+		where file_num = #{fileNum};
+	</select>
+	<insert id="insertFile" parameterType="FileInfo" >
+		insert into files_info (file_num,cust_id,bumen_id,file_name,qianfeng_date,m_id,ywy_id)
+		values(#{fileNum},#{custId},#{bumenId},#{fileName},#{qianfengDate},#{mId},#{ywyId});
 	</insert>
-	<insert id="insertFile" parameterType="StorageInfo" >
-		insert into storage_info (file_num,in_serial,kgyin_id,in_date,kucun_state)
-		values(#{fileNum},0,#{kgyinId},NOW(),1);
+	<insert id="insertStorage" parameterType="StorageInfo" >
+		insert into storage_info (file_num,position,in_serial,kgyin_id,in_date,kucun_state)
+		values(#{fileNum},#{position},0,#{kgyinId},NOW(),1);
 	</insert>
+	<update id="updateStorage" parameterType="StorageInfo">
+		update storage_info
+		set kgyin_id = #{kgyinId},kucun_state = 1,u_date=NOW()
+		where file_num = #{fileNum};
+	</update>
 	
 </mapper>

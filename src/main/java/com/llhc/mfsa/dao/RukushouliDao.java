@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
 
@@ -13,9 +13,9 @@ public interface RukushouliDao {
 
 	public List<SerialInfo> selectSerialList();
 	
-	public List<PaperInfo> selectPaperList(String serialNum);
+	public List<FileInfo> selectPaperList(String serialNum);
 	
-	public String selectFileNum(String danganNum);
+	public FileInfo selectFile(String fileNum);
 	
 	public int updateStorage(StorageInfo storageInfo);
 	

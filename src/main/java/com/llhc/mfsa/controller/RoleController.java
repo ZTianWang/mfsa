@@ -20,14 +20,24 @@ public class RoleController {
 		}
 		int role = (Integer)session.getAttribute("role");
 		if (role == 1) {
-			return "yewuyuan";
+			return "ywy";
 		}if (role == 2) {
-			return "kuguanyuan";
+			return "kgy";
 		}
 		else {
 			model.addAttribute("loginErr", "unknownRole");
 			return "redirect:/account/loginErr";
 		}
+	}
+	
+	@RequestMapping("/ywy")
+	public String ywy(Model model,HttpSession session,String accountErr){
+		return"yewuyuan";
+	}
+	
+	@RequestMapping("/kgy")
+	public String kgy(Model model,HttpSession session,String accountErr){
+		return"kuguanyuan";
 	}
 	
 }

@@ -2,25 +2,23 @@ package com.llhc.mfsa.vo;
 
 public class QianfengParam {
 
-	private String danganNum;
 	private String fileNum;
+	private String custName;
 	private Integer bumenId;
-	private Integer wupinId;
-	private String fuzeren;
-	private String kehujingli;
-	private String dianhua;
+	private String fileName;
+	private String mName;
 	
-	public String getDanganNum() {
-		return danganNum;
-	}
-	public void setDanganNum(String danganNum) {
-		this.danganNum = danganNum;
-	}
 	public String getFileNum() {
 		return fileNum;
 	}
 	public void setFileNum(String fileNum) {
 		this.fileNum = fileNum;
+	}
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
 	}
 	public Integer getBumenId() {
 		return bumenId;
@@ -28,29 +26,17 @@ public class QianfengParam {
 	public void setBumenId(Integer bumenId) {
 		this.bumenId = bumenId;
 	}
-	public Integer getWupinId() {
-		return wupinId;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setWupinId(Integer wupinId) {
-		this.wupinId = wupinId;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	public String getFuzeren() {
-		return fuzeren;
+	public String getmName() {
+		return mName;
 	}
-	public void setFuzeren(String fuzeren) {
-		this.fuzeren = fuzeren;
-	}
-	public String getKehujingli() {
-		return kehujingli;
-	}
-	public void setKehujingli(String kehujingli) {
-		this.kehujingli = kehujingli;
-	}
-	public String getDianhua() {
-		return dianhua;
-	}
-	public void setDianhua(String dianhua) {
-		this.dianhua = dianhua;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 	
 }

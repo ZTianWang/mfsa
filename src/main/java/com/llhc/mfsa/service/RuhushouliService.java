@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llhc.mfsa.dao.RukushouliDao;
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.entity.StorageInfo;
-import com.llhc.mfsa.helper.TcpClient;
+import com.llhc.mfsa.helper.Position;
 import com.llhc.mfsa.vo.RukushouliParam;
-//import com.llhc.mfsa.entity.SerialInfo;
 import com.llhc.mfsa.vo.RukushouliView;
 
 @Service
@@ -36,7 +35,7 @@ public class RuhushouliService {
 	}
 	
 	public RukushouliView queryPapers(String serialNum) {
-		List<PaperInfo> paperList = dao.selectPaperList(serialNum);
+		List<FileInfo> paperList = dao.selectPaperList(serialNum);
 		RukushouliView view = new RukushouliView();
 		view.setPaperlist(paperList);
 		return view;
@@ -45,16 +44,18 @@ public class RuhushouliService {
 	public int accept(RukushouliParam param,Integer kgyId) throws Exception{
 		StorageInfo storageInfo = new StorageInfo();
 		int count = 0;
-			List<String> numList = param.getDanganNum();
+			List<String> numList = param.getFileNum();
 			if (numList == null) {
 				return 0;
 			}
 			storageInfo.setKgyinId(kgyId);
 			List<String> fileNums = new ArrayList<String>();
-			for (String danganNum : numList) {
-				String fileNum = dao.selectFileNum(danganNum);
+			for (String fileNum : numList) {
 				fileNums.add(fileNum);
 				storageInfo.setFileNum(fileNum);
+				FileInfo file = dao.selectFile(fileNum);
+				String position = Position.getPosition(file.getBumenId(), file.getId());
+				storageInfo.setPosition(position);
 				count += dao.updateStorage(storageInfo);
 			}
 			SerialInfo serialInfo = new SerialInfo();
@@ -63,10 +64,5 @@ public class RuhushouliService {
 			dao.updateSerial(serialInfo);
 			return count;
 	}
-	
-//	public void send() {
-//		TcpClient client = new TcpClient("入库申请");
-//		client.start();
-//	}
 	
 }

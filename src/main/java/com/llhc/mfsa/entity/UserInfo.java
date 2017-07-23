@@ -5,6 +5,7 @@ public class UserInfo {
 	private Integer id;
 	private String userName;
 	private String realName;
+	private String phone;
 	private Integer bumenId;
 	private Integer role;
 	private String password;
@@ -27,6 +28,12 @@ public class UserInfo {
 	}
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public Integer getBumenId() {
 		return bumenId;

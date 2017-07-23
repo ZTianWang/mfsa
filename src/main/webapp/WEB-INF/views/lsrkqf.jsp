@@ -20,27 +20,81 @@
 		<script type="text/javascript">
 			$(function(){
 				
-				$('#form1').unbind();
-				$('#form1').submit(function(e){
-					var options={
-					url:"add",
-					type:"post",
-					dataType:"json",
-					success:function(data,textStatus){
-						if (data.success) {
-							alert("签封入库成功");
-							window.location.href="../user"
-						} else{
-							alert(data.errorMsg);
+				$('#sm').click(function(){
+					var rand = Math.floor(Math.random () * 9000000000);
+					var c="69";
+					var num=c+rand;
+					$("#fileNum").val(num);
+					
+				});
+				
+				$('#submit').click(function(){
+					$('#form1').unbind();
+					$('#form1').submit(function(e){
+						var options={
+							url:"add",
+							type:"post",
+							dataType:"json",
+							beforeSubmit:function(){
+								if ($("#fileNum").val().trim() == "") {
+									alert("请输入档案袋编号");
+									return false;
+								}
+								if ($("#custName").val().trim() == "") {
+									alert("请输入客户姓名");
+									return false;
+								}
+								if ($("#fileName").val().trim() == "") {
+									alert("请输入文件名称");
+									return false;
+								}
+							},
+							success:function(data,textStatus){
+								if (data.success) {
+									alert("签封成功");
+									window.location.href="../ywy"
+								} else{
+									alert(data.errorMsg);
+								}
+							},
+							error:function(data,textStatus){
+								alert("服务器响应错误");
+							},
 						}
-					},
-					error:function(data,textStatus){
-						alert("服务器响应错误");
-					},
-				}
-				$(this).ajaxSubmit(options);
-				e.preventDefault();
-			}); 
+						$(this).ajaxSubmit(options);
+						e.preventDefault();
+					}); 
+				});
+				
+				$('#resub').click(function(){
+					$('#form1').unbind();
+					$('#form1').submit(function(e){
+						var options={
+							url:"readd",
+							type:"post",
+							dataType:"json",
+							beforeSubmit:function(){
+								if ($("#fileNum").val().trim() == "") {
+									alert("请输入档案袋编号");
+									return false;
+								}
+							},
+							success:function(data,textStatus){
+								if (data.success) {
+									alert("受理成功");
+									window.location.href="../ywy"
+								} else{
+									alert(data.errorMsg);
+								}
+							},
+							error:function(data,textStatus){
+								alert("服务器响应错误");
+							},
+						}
+						$(this).ajaxSubmit(options);
+						e.preventDefault();
+					}); 
+				});
 			
 		});
 		
@@ -78,58 +132,34 @@
 	</head>
 
 	<body>
-		<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
-			<tr>
-				<th width=10%><a href="../rksl/access">入库受理</a></th>
-				<th width=10%><a href="../cksl/access">出库受理</a></th>
-				<th width=10%><a href="../lsrkqf/access">临时入库签封</a></th>
-				<th width=10%><a href="../jjcksl/access">紧急出库受理</a></th>
-				<th width=10%><a>查询</a></th>
-				<th width=10%><a>查库</a></th>
-				<th width=10%><a href="../account/logout">签退</a></th>
-			</tr>
-		</table>
 		<div class="qfjm">
 			<table cellspacing="0" cellpadding="10px" style="margin: auto;margin-top: 20px;">
 				<form id="form1" method="post" action="add">
 					<tr>
-						<td>档案袋编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fileNum" name="fileNum" type="text" style="height:20px;width:300px">&nbsp;*</td>
+						<td>档案袋编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fileNum" name="fileNum" type="text" style="height:20px;width:300px">&nbsp;*<button id="sm" type="button">扫描</button></td>
 					</tr>
 					<tr>
-						<td>文件编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="danganNum" name="danganNum" type="text" style="height:20px;width:300px">&nbsp;*</td>
+						<td>客户姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="custName" name="custName" type="text" style="height:20px;width:300px">&nbsp;*</td>
 					</tr>
 					<tr>
 						<td>部门名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<select id="bumenId" name="bumenId" style="height:20px;width:295px">
-								<option value="1">部门A</option>
-								<option value="2">部门B</option>
+								<option value="1">丰台支行</option>
+								<option value="2">大兴支行</option>
 							</select> &nbsp;*
 						</td>
 					</tr>
 					<tr>
-						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="date" style="height:20px;width:300px" disabled="disabled">&nbsp;*</td>
+						<td>文件名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fileName" name="fileName" type="text" style="height:20px;width:300px">&nbsp;*</td>
 					</tr>
 					<tr>
-						<td>到期日：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="daoqiDate" name="daoqiDate" type="date" style="height:20px;width:300px" >&nbsp;*</td>
+						<td>签封日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="qianfengDate" name="qianfengDate" type="date" style="height:20px;width:300px" readonly="readonly">&nbsp;*</td>
 					</tr>
 					<tr>
-						<td>封存物品名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<select id="wupinId" name="wupinId" style="height:20px;width:295px">
-							<option value="1">二手房屋抵押合同</option>
-							<option value="2">二手汽车抵押合同</option>
-						</select> &nbsp;*</td>
+						<td>客户经理：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="mName" name="mName" type="text" style="height:20px;width:300px"></td>
 					</tr>
 					<tr>
-						<td>负责人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="fuzeren" name="fuzeren" type="text" style="height:20px;width:300px"></td>
-					</tr>
-					<tr>
-						<td>客户经理：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="kehujingli" name="kehujingli" type="text" style="height:20px;width:300px"></td>
-					</tr>
-					<tr>
-						<td>电话：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="dianhua" name="dianhua" type="text" style="height:20px;width:300px"></td>
-					</tr>
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="submit" type="submit" value="确认签封入库" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取消"></td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="submit" type="submit" value="确认签封入库" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="resub" type="submit" value="重新入库" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取消"></td>
 					</tr>
 				</form>
 			</table>

@@ -25,7 +25,7 @@ public class AccountController {
 	
 	@RequestMapping("/login")
 	public String account(AccountParam param,Model model,HttpSession session) {
-		if (param.getUserName() == null) {
+		if (param == null) {
 			return "login";
 		}
 		UserInfo user = new UserInfo();
@@ -40,7 +40,7 @@ public class AccountController {
 			session.setAttribute("bumenId", user.getBumenId());
 			session.setAttribute("realName", user.getRealName());
 			session.setAttribute("role", user.getRole());
-			return "forward:/user";
+			return "redirect:/user";
 		}
 	}
 	
@@ -51,7 +51,7 @@ public class AccountController {
 		}else if (loginErr.equals("unknownRole")) {
 			model.addAttribute("loginError", "身份验证失败，请重新登录");
 		}
-		return "login";
+		return "forward:/account/view";
 	}
 	
 	@RequestMapping("/logout")

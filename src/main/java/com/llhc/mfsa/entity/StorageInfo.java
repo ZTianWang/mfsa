@@ -9,12 +9,10 @@ public class StorageInfo {
 	private String position;
 	private String inSerial;
 	private Integer ywyinId;
-	private Integer jhyinId;
 	private Integer kgyinId;
 	private Date inDate;
 	private String outSerial;
 	private Integer ywyoutId;
-	private Integer jhyoutId;
 	private Integer kgyoutId;
 	private Date outDate;
 	private Integer kucunState;
@@ -49,12 +47,6 @@ public class StorageInfo {
 	public void setYwyinId(Integer ywyinId) {
 		this.ywyinId = ywyinId;
 	}
-	public Integer getJhyinId() {
-		return jhyinId;
-	}
-	public void setJhyinId(Integer jhyinId) {
-		this.jhyinId = jhyinId;
-	}
 	public Integer getKgyinId() {
 		return kgyinId;
 	}
@@ -78,12 +70,6 @@ public class StorageInfo {
 	}
 	public void setYwyoutId(Integer ywyoutId) {
 		this.ywyoutId = ywyoutId;
-	}
-	public Integer getJhyoutId() {
-		return jhyoutId;
-	}
-	public void setJhyoutId(Integer jhyoutId) {
-		this.jhyoutId = jhyoutId;
 	}
 	public Integer getKgyoutId() {
 		return kgyoutId;

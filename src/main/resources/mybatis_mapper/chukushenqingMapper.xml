@@ -5,19 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.llhc.mfsa.dao.ChukushenqingDao">
 
-	<resultMap type="com.llhc.mfsa.entity.PaperInfo" id="paperMap">
+	<resultMap type="com.llhc.mfsa.entity.FileInfo" id="fileMap">
 		<id property="id" column="id"></id>
-		<result property="danganNum" column="dangan_num"></result>
-		<result property="bumenId" column="bumen_id"></result>
-		<result property="wupinId" column="wupin_id"></result>
 		<result property="fileNum" column="file_num"></result>
+		<result property="custId" column="cust_id"></result>
+		<result property="bumenId" column="bumen_id"></result>
+		<result property="fileName" column="file_name"></result>
 		<result property="qianfengDate" column="qianfeng_date"></result>
-		<result property="daoqiDate" column="daoqi_date"></result>
-		<result property="fuzeren" column="fuzeren"></result>
-		<result property="kehujingli" column="kehujingli"></result>
-		<result property="dianhua" column="dianhua"></result>
+		<result property="mId" column="m_id"></result>
+		<result property="ywyId" column="ywy_id"></result>
+		<result property="custName" column="name"></result>
 		<result property="bumenName" column="bumen_name"></result>
-		<result property="wupinName" column="wupin_name"></result>
+		<result property="mName" column="real_name"></result>
+		<result property="ywyName" column="real_name"></result>
 	</resultMap>
 	<resultMap type="com.llhc.mfsa.entity.StorageInfo" id="storageMap">
 		<id property="id" column="id"></id>
@@ -28,16 +28,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="outDate" column="out_date"></result>
 	</resultMap>
 	
-	<select id="selectPaperList" parameterType="com.llhc.mfsa.vo.ChukushenqingParam" resultMap="paperMap">
-		SELECT p.*,d.bumen_name FROM papers_info p
+	<select id="selectPaperList" parameterType="com.llhc.mfsa.vo.ChukushenqingParam" resultMap="fileMap">
+		SELECT p.*,d.bumen_name,c.name FROM files_info p
 		left join departments d
 		on p.bumen_id = d.id
 		left join storage_info s
 		on p.file_num = s.file_num
+		left join cust_info c
+		on p.cust_id = c.id
 		<where>
-			p.bumen_id=#{bumenId} and s.kucun_state = 1 and ISNULL(s.out_serial)
-			<if test=' danganNum != "" '>
-				and dangan_num = #{danganNum}
+			p.bumen_id=#{bumenId} and s.kucun_state = 1
+			<if test="fileNum!=null and fileNum!=''">
+				and p.file_num = #{fileNum}
+			</if>
+			<if test="custName!=null and custName!=''">
+				and c.name = #{custName}
+			</if>
+			<if test="fileName!=null and fileName!=''">
+				and file_name = #{fileName}
 			</if>
 			<if test="qianfengDateF!=null and qianfengDateF!=''">
 				<choose>
@@ -54,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					<![CDATA[and qianfeng_date <= #{qianfengDateL}]]>
 				</if>
 			</if>
-			<if test="daoqiDateF!=null and daoqiDateF!=''">
+			<!-- <if test="daoqiDateF!=null and daoqiDateF!=''">
 				<choose>
 					<when test="daoqiDateL!=null and daoqiDateL!=''">
 						and (daoqi_date BETWEEN #{daoqiDateF} and #{daoqiDateL})
@@ -68,12 +76,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="daoqiDateF==null or daoqiDateF==''">
 					<![CDATA[and daoqi_date <= #{daoqiDateL}]]>
 				</if>
-			</if>
+			</if> -->
 		</where>
 	</select>
 	
 	<select id="selectFileNum" parameterType="Integer" resultType="String">
-		select file_num from papers_info where id=#{danganId};
+		select file_num from files_info where id=#{fileId};
 	</select>
 	
 	<insert id="insertSerial" parameterType="SerialInfo" >

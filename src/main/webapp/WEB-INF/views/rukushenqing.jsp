@@ -18,7 +18,7 @@
 			
 			.daxx {
 				margin: auto;
-				height: 500px;
+				height: 350px;
 				width: 800px;
 				overflow: scroll;
 				background: #EEEEEE;
@@ -27,7 +27,7 @@
 		<script type="text/javascript">
 			function selectGroup() {
 				var grp = document.getElementById("check-all");
-				var eles = document.getElementsByName("danganNum");
+				var eles = document.getElementsByName("fileNum");
 				for (var i = 0; i < eles.length; i++) {
 					if (eles[i].disabled == false) eles[i].checked = grp.checked;
 				}
@@ -37,6 +37,7 @@
 		<script type="text/javascript" src="../js/jquery.form.min.js.js" ></script>
 		<script type="text/javascript" src="../js/template.js" ></script>
 		<script type="text/javascript">
+		
 			$(function(){
 				
 				$('#form1').unbind();
@@ -45,10 +46,16 @@
 					url:"apply",
 					type:"post",
 					dataType:"json",
+					beforeSubmit:function(){
+						if ($("input[name='fileNum']:checked").size()==0) {
+							alert("请选择文件");
+							return false;
+						}
+					},
 					success:function(data,textStatus){
 						if (data.success) {
 							alert("申请成功");
-							window.location.href="../user"
+							window.location.href="../ywy"
 						} else{
 							alert(data.errorMsg);
 						}
@@ -66,16 +73,6 @@
 	</head>
 
 	<body>
-    	<table width=100% height="50px" border="1px" cellspacing="0px" cellpadding="">
-			<tr>
-				<th width=10%><a href="../qianfeng/access">档案签封</a></th>
-				<th width=10%><a href="../rksq/access">申请入库</a></th>
-				<th width=10%><a href="../cksq/access">申请出库</a></th>
-				<th width=10%><a>出入库查询</a></th>
-				<th width=10%><a>档案信息查询</a></th>
-				<th width=10%><a href="../account/logout">签退</a></th>
-			</tr>
-		</table>
 		<div class="qfjm">
 			<div style="margin: 80px auto 10px 130px;">
 				全选<input id="check-all" type="checkbox" onclick="selectGroup()" /> &nbsp;
@@ -87,8 +84,9 @@
 					<table border="1"  style="margin: auto;width: 700px;">
 						<thead>
 							<tr>
-								<th>档案编号</th>
-								<th>部门名称</th>
+								<th>档案袋编号</th>
+								<th>文件名称</th>
+								<th>客户名</th>
 								<th>签封日期</th>
 								<th>选择</th>
 							</tr>
@@ -96,11 +94,12 @@
 						<tbody>
 							<c:forEach var="Paper" items="${pageView}">
 								<tr>
-		                			<td>${Paper.danganNum}</td>
-		                			<td>${Paper.bumenName}</td>
+		                			<td>${Paper.fileNum}</td>
+		                			<td>${Paper.fileName}</td>
+		                			<td>${Paper.custName}</td>
 		                			<td>${Paper.qianfengDate}</td>
 		                			<td>
-										<input type="checkbox" name="danganNum" value='${Paper.danganNum}' />
+										<input type="checkbox" name="fileNum" value='${Paper.fileNum}' />
 									</td>
 		           				 </tr>
 							</c:forEach>

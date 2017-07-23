@@ -5,37 +5,24 @@ import java.util.List;
 public class ChukushenqingParam {
 	
 	private Integer bumenId;
-	private String danganNum;
+	private String fileNum;
 	private String qianfengDateF;
 	private String qianfengDateL;
-	private String daoqiDateF;
-	private String daoqiDateL;
+	private String custName;
+	private String fileName;
 	private String serial;
-	private List<Integer> danganId;
-	
-	public String getSerial() {
-		return serial;
-	}
-	public void setSerial(String serial) {
-		this.serial = serial;
-	}
-	public List<Integer> getDanganId() {
-		return danganId;
-	}
-	public void setDanganId(List<Integer> danganId) {
-		this.danganId = danganId;
-	}
+	private List<String> fileNums;
 	public Integer getBumenId() {
 		return bumenId;
 	}
 	public void setBumenId(Integer bumenId) {
 		this.bumenId = bumenId;
 	}
-	public String getDanganNum() {
-		return danganNum;
+	public String getFileNum() {
+		return fileNum;
 	}
-	public void setDanganNum(String danganNum) {
-		this.danganNum = danganNum;
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
 	}
 	public String getQianfengDateF() {
 		return qianfengDateF;
@@ -49,23 +36,29 @@ public class ChukushenqingParam {
 	public void setQianfengDateL(String qianfengDateL) {
 		this.qianfengDateL = qianfengDateL;
 	}
-	public String getDaoqiDateF() {
-		return daoqiDateF;
+	public String getCustName() {
+		return custName;
 	}
-	public void setDaoqiDateF(String daoqiDateF) {
-		this.daoqiDateF = daoqiDateF;
+	public void setCustName(String custName) {
+		this.custName = custName;
 	}
-	public String getDaoqiDateL() {
-		return daoqiDateL;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setDaoqiDateL(String daoqiDateL) {
-		this.daoqiDateL = daoqiDateL;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	
-	public String toString() {
-		return "ChukushenqingParam [bumenId=" + bumenId + ", danganNum=" + danganNum + ", qianfengDateF="
-				+ qianfengDateF + ", qianfengDateL=" + qianfengDateL + ", daoqiDateF=" + daoqiDateF + ", daoqiDateL="
-				+ daoqiDateL + "]";
+	public String getSerial() {
+		return serial;
+	}
+	public void setSerial(String serial) {
+		this.serial = serial;
+	}
+	public List<String> getFileNums() {
+		return fileNums;
+	}
+	public void setFileNums(List<String> fileNums) {
+		this.fileNums = fileNums;
 	}
 	
 }

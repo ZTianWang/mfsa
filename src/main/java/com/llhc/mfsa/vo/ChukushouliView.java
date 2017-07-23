@@ -2,7 +2,7 @@ package com.llhc.mfsa.vo;
 
 import java.util.List;
 
-import com.llhc.mfsa.entity.PaperInfo;
+import com.llhc.mfsa.entity.FileInfo;
 
 public class ChukushouliView {
 
@@ -10,7 +10,7 @@ public class ChukushouliView {
 	private int count; 
 	private String bumenName;
 	private String ywyName;
-	private List<PaperInfo> paperlist;
+	private List<FileInfo> paperList;
 	
 	public String getSerialNum() {
 		return serialNum;
@@ -36,12 +36,11 @@ public class ChukushouliView {
 	public void setYwyName(String ywyName) {
 		this.ywyName = ywyName;
 	}
-	public List<PaperInfo> getPaperlist() {
-		return paperlist;
+	public List<FileInfo> getPaperList() {
+		return paperList;
 	}
-	public void setPaperlist(List<PaperInfo> paperlist) {
-		this.paperlist = paperlist;
+	public void setPaperList(List<FileInfo> paperList) {
+		this.paperList = paperList;
 	}
-	
 	
 }

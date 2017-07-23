@@ -2,22 +2,25 @@ package com.llhc.mfsa.entity;
 
 import java.util.Date;
 
-public class PaperInfo {
+import com.llhc.mfsa.helper.DateHelper;
+
+public class FileInfo {
 
 	private Integer id;
-	private String danganNum;
-	private Integer bumenId;
-	private Integer wupinId;
 	private String fileNum;
+	private Integer custId;
+	private Integer bumenId;
+	private String fileName;
 	private Date qianfengDate;
-	private Date daoqiDate;
-	private String fuzeren;
-	private String kehujingli;
-	private String dianhua;
+	private Integer mId;
 	private Integer ywyId;
+	private String custName;
 	private String bumenName;
-	private String wupinName;
+	private String mName;
 	private String ywyName;
+	private String dateStr;
+	private Integer kucunState;
+	private String position;
 	
 	public Integer getId() {
 		return id;
@@ -25,11 +28,17 @@ public class PaperInfo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDanganNum() {
-		return danganNum;
+	public String getFileNum() {
+		return fileNum;
 	}
-	public void setDanganNum(String danganNum) {
-		this.danganNum = danganNum;
+	public void setFileNum(String fileNum) {
+		this.fileNum = fileNum;
+	}
+	public Integer getCustId() {
+		return custId;
+	}
+	public void setCustId(Integer custId) {
+		this.custId = custId;
 	}
 	public Integer getBumenId() {
 		return bumenId;
@@ -37,47 +46,24 @@ public class PaperInfo {
 	public void setBumenId(Integer bumenId) {
 		this.bumenId = bumenId;
 	}
-	public Integer getWupinId() {
-		return wupinId;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setWupinId(Integer wupinId) {
-		this.wupinId = wupinId;
-	}
-	public String getFileNum() {
-		return fileNum;
-	}
-	public void setFileNum(String fileNum) {
-		this.fileNum = fileNum;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	public Date getQianfengDate() {
 		return qianfengDate;
 	}
 	public void setQianfengDate(Date qianfengDate) {
+		this.dateStr = DateHelper.dateToStr(qianfengDate);
 		this.qianfengDate = qianfengDate;
 	}
-	public Date getDaoqiDate() {
-		return daoqiDate;
+	public Integer getmId() {
+		return mId;
 	}
-	public void setDaoqiDate(Date daoqiDate) {
-		this.daoqiDate = daoqiDate;
-	}
-	public String getFuzeren() {
-		return fuzeren;
-	}
-	public void setFuzeren(String fuzeren) {
-		this.fuzeren = fuzeren;
-	}
-	public String getKehujingli() {
-		return kehujingli;
-	}
-	public void setKehujingli(String kehujingli) {
-		this.kehujingli = kehujingli;
-	}
-	public String getDianhua() {
-		return dianhua;
-	}
-	public void setDianhua(String dianhua) {
-		this.dianhua = dianhua;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
 	public Integer getYwyId() {
 		return ywyId;
@@ -85,17 +71,23 @@ public class PaperInfo {
 	public void setYwyId(Integer ywyId) {
 		this.ywyId = ywyId;
 	}
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
 	public String getBumenName() {
 		return bumenName;
 	}
 	public void setBumenName(String bumenName) {
 		this.bumenName = bumenName;
 	}
-	public String getWupinName() {
-		return wupinName;
+	public String getmName() {
+		return mName;
 	}
-	public void setWupinName(String wupinName) {
-		this.wupinName = wupinName;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 	public String getYwyName() {
 		return ywyName;
@@ -103,13 +95,20 @@ public class PaperInfo {
 	public void setYwyName(String ywyName) {
 		this.ywyName = ywyName;
 	}
-	
-	
-	public String toString() {
-		return "PaperInfo [id=" + id + ", danganNum=" + danganNum + ", bumenId=" + bumenId + ", wupinId=" + wupinId
-				+ ", fileNum=" + fileNum + ", qianfengDate=" + qianfengDate + ", daoqiDate=" + daoqiDate + ", fuzeren="
-				+ fuzeren + ", kehujingli=" + kehujingli + ", dianhua=" + dianhua + ", ywyId=" + ywyId + ", bumenName="
-				+ bumenName + ", wupinName=" + wupinName + ", ywyName=" + ywyName + "]";
+	public String getDateStr() {
+		return dateStr;
+	}
+	public Integer getKucunState() {
+		return kucunState;
+	}
+	public void setKucunState(Integer kucunState) {
+		this.kucunState = kucunState;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	
 }
